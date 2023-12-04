@@ -11,8 +11,17 @@ export const GLobalStyle = createGlobalStyle`
     font-size: 62.5%;
 }
 
+body {
+    background: ${({theme})=> theme.background};
+    font-family: 'Roboto', sans-serif;
+    //font-family: 'Baloo 2', sans-serif;
+}
+
 body, input, textarea, button {
     font-size: 1.6rem;
+}
+button {
+    cursor: pointer;
 }
 a {
     text-decoration: none;

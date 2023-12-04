@@ -22,4 +22,4 @@ export const themeDefault = {
     'purple-light': '#EBE5F9',
     'purple-dark': '#4B2995'
 
-}
+}as const
