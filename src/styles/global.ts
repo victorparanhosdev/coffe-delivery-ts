@@ -31,6 +31,10 @@ ul {
     list-style: none;
 }
 
+h1 {
+    font-family: 'Baloo 2', sans-serif;
+}
+
 
 
 
