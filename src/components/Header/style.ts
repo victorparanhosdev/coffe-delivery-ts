@@ -49,6 +49,24 @@ button {
     color: ${({theme})=> theme["yellow-dark"] };
     padding: 0.8rem;
     border-radius: 0.6rem;
+    position: relative;
+    
+    span {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: ${({theme})=> theme["yellow-dark"] };
+        color: ${({theme})=> theme.white};
+        font-size: 1.2rem;
+        font-weight: 900;
+        line-height: 1.3;
+        border-radius: 100px;
+        height: 2rem;
+        width: 2rem;
+        top: -0.5rem;
+        right: -0.8rem;
+    }
 }
 
 
