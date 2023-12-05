@@ -1,31 +1,32 @@
-import { HomeContainer, Content, SectionOne, SectionTwo, Card, Buy, Action } from "./style";
+import { SectionOne, SectionTwo, Card, Buy, Action } from "./style";
 import { Header } from "../../components/Header";
 import LogoCoffe from '../../assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee, Plus, Minus } from '@phosphor-icons/react'
 import Coffe from '../../assets/Café Gelado.svg'
 export function Home() {
     return (
-        <HomeContainer>
+        <div>
             <Header />
 
-            <Content>
+            <main>
 
                 <SectionOne>
-                    <div>
-                        <h1>Encontre o café perfeito para qualquer hora do dia</h1>
-                        <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
+                    <div >
+                        <div >
+                            <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+                            <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
 
-                        <ul>
-                            <li><ShoppingCart size={32} weight="fill" /><p>Compra simples e segura</p></li>
-                            <li><Package size={32} weight="fill" /><p>Embalagem mantém o café intacto</p></li>
-                            <li><Timer size={32} weight="fill" /><p>Entrega rápida e rastreada</p></li>
-                            <li><Coffee size={32} weight="fill" /><p>O café chega fresquinho até você</p></li>
-                        </ul>
+                            <ul>
+                                <li><ShoppingCart size={32} weight="fill" /><p>Compra simples e segura</p></li>
+                                <li><Package size={32} weight="fill" /><p>Embalagem mantém o café intacto</p></li>
+                                <li><Timer size={32} weight="fill" /><p>Entrega rápida e rastreada</p></li>
+                                <li><Coffee size={32} weight="fill" /><p>O café chega fresquinho até você</p></li>
+                            </ul>
 
+                        </div>
+
+                        <img src={LogoCoffe} alt="Logo Café" />
                     </div>
-
-                    <img src={LogoCoffe} alt="Logo Café" />
-
                 </SectionOne>
 
                 <SectionTwo>
@@ -243,8 +244,8 @@ export function Home() {
                     </div>
 
                 </SectionTwo>
-            </Content>
+            </main>
 
-        </HomeContainer>
+        </div>
     )
 }

@@ -1,84 +1,95 @@
 import styled from "styled-components";
-
-export const HomeContainer = styled.div``;
-
-export const Content = styled.main`
-  width: min(112rem, 95%);
-  margin: auto;
-`;
+import Background from "../../assets/Background.png";
 
 export const SectionOne = styled.section`
-  min-height: 54.4rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 0px;
+    content: "";
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url(${Background}) no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
 
   > div {
-    max-width: 58.8rem;
-    h1 {
-      font-size: 4.8rem;
-      color: ${({ theme }) => theme["base-title"]};
-      line-height: 1.3;
-      font-weight: 900;
-    }
-    > p {
-      margin-top: 1.6rem;
-      font-size: 2rem;
-      line-height: 1.3;
-    }
-    ul {
-      margin-top: 6.6rem;
-      display: grid;
-      grid-template-columns: auto auto;
-      gap: 2rem 4rem;
+    min-height: 54.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(112rem, 95%);
+    margin: auto;
+    > div {
+      max-width: 58.8rem;
+      h1 {
+        font-size: 4.8rem;
+        color: ${({ theme }) => theme["base-title"]};
+        line-height: 1.3;
+        font-weight: 900;
+      }
+      > p {
+        margin-top: 1.6rem;
+        font-size: 2rem;
+        line-height: 1.3;
+      }
+      ul {
+        margin-top: 6.6rem;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 2rem 4rem;
 
-      li {
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        svg {
-          min-width: 3.2rem;
-          padding: 0.8rem;
-          border-radius: 50%;
-          color: ${({ theme }) => theme.white};
-          background-color: green;
-        }
+        li {
+          display: flex;
+          align-items: center;
+          gap: 1.2rem;
+          svg {
+            min-width: 3.2rem;
+            padding: 0.8rem;
+            border-radius: 50%;
+            color: ${({ theme }) => theme.white};
+            background-color: green;
+          }
 
-        p {
-          color: ${({ theme }) => theme["base-text"]};
-          line-height: 1.3;
-        }
+          p {
+            color: ${({ theme }) => theme["base-text"]};
+            line-height: 1.3;
+          }
 
-        &:nth-child(1) svg {
-          background: ${({ theme }) => theme["yellow-dark"]};
-        }
-        &:nth-child(2) svg {
-          background: ${({ theme }) => theme["base-text"]};
-        }
-        &:nth-child(3) svg {
-          background: ${({ theme }) => theme["yellow"]};
-        }
-        &:nth-child(4) svg {
-          background: ${({ theme }) => theme.purple};
+          &:nth-child(1) svg {
+            background: ${({ theme }) => theme["yellow-dark"]};
+          }
+          &:nth-child(2) svg {
+            background: ${({ theme }) => theme["base-text"]};
+          }
+          &:nth-child(3) svg {
+            background: ${({ theme }) => theme["yellow"]};
+          }
+          &:nth-child(4) svg {
+            background: ${({ theme }) => theme.purple};
+          }
         }
       }
     }
-  }
 
-  img {
-    display: block;
+    img {
+      display: block;
+    }
   }
 `;
 
 export const SectionTwo = styled.section`
+  width: min(112rem, 95%);
+  margin: auto;
   padding-block: 3.2rem;
   > h1 {
     font-size: 3.2rem;
     line-height: 1.3;
     font-weight: 900;
     color: ${({ theme }) => theme["base-subtitle"]};
-
   }
 
   > div {
@@ -121,89 +132,74 @@ export const Card = styled.div`
       font-weight: 900;
       line-height: 1.3;
     }
-
   }
 
   h1 {
-      margin-top: 1.6rem;
-      font-size: 2rem;
-      font-weight: bold;
-      line-height: 1.3;
-    }
-    label {
-      color: ${({ theme }) => theme["base-label"]};
-      font-size: 1.4rem;
-      line-height: 1.3;
-      margin-top: 0.8rem;
-      margin-bottom: 3.3rem;
-    }
-
-
+    margin-top: 1.6rem;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.3;
+  }
+  label {
+    color: ${({ theme }) => theme["base-label"]};
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-top: 0.8rem;
+    margin-bottom: 3.3rem;
+  }
 `;
 
 export const Buy = styled.div`
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2.3rem;
-   
-        > p {
-          font-size: 1.4rem;
-          color: ${({ theme }) => theme["base-text"]};
-            strong {
-              font-size: 2.4rem;
-                font-family: 'Baloo 2', sans-serif;
-              font-weight: 900;
-            }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.3rem;
 
-        }
-
-      
-
-          
-
-
-`
+  > p {
+    font-size: 1.4rem;
+    color: ${({ theme }) => theme["base-text"]};
+    strong {
+      font-size: 2.4rem;
+      font-family: "Baloo 2", sans-serif;
+      font-weight: 900;
+    }
+  }
+`;
 
 export const Action = styled.div`
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            
-          > div {
-            background: ${({ theme }) => theme["base-button"]};
-            display: flex;
-            padding: 0.9rem 1.2rem;
-            border-radius: 6px;
-            gap: 0.4rem;
-              button {
-                display: flex;
-                align-items: center;
-                border: 0;
-                background: transparent;
-              }
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 
-              input {
-                text-align: center;
-                background: transparent;
-                border: 0;
-                width: 2rem;
-                color: ${({ theme }) => theme["base-title"]}
+  > div {
+    background: ${({ theme }) => theme["base-button"]};
+    display: flex;
+    padding: 0.9rem 1.2rem;
+    border-radius: 6px;
+    gap: 0.4rem;
+    button {
+      display: flex;
+      align-items: center;
+      border: 0;
+      background: transparent;
+    }
 
-              }
+    input {
+      text-align: center;
+      background: transparent;
+      border: 0;
+      width: 2rem;
+      color: ${({ theme }) => theme["base-title"]};
+    }
+  }
 
-          }
-
-
-     
-
-        > button {
-            border: 0;
-            background: ${({ theme }) => theme["purple-dark"]};
-            color: ${({ theme }) => theme.white};
-            display: flex;
-            padding: 0.8rem;
-            border-radius: 6px;
-            min-width: 2.2rem;
-        }
-`
+  > button {
+    border: 0;
+    background: ${({ theme }) => theme["purple-dark"]};
+    color: ${({ theme }) => theme.white};
+    display: flex;
+    padding: 0.8rem;
+    border-radius: 6px;
+    min-width: 2.2rem;
+  }
+`;
