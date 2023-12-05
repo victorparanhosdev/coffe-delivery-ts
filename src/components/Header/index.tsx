@@ -9,7 +9,7 @@ export function Header(){
                 <img src={Logo} alt="Logo Coffe" />
 
                 <Menu>
-                    <div><MapPin size={22}weight="fill" /><span>Porto Alegre, RS</span></div>
+                    <div><MapPin size={22} weight="fill" /><span>Porto Alegre, RS</span></div>
                     <button type='button'><ShoppingCart size={22} weight="fill"/></button>
                 </Menu>
                 
