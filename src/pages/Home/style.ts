@@ -98,11 +98,12 @@ export const Card = styled.div`
   img {
     min-height: 12rem;
     height: 12rem;
-    margin-top: -5.4rem;
-    margin-bottom: 1.2rem;
+
+
   }
 
   > div:has(span) {
+    margin-top: 1.2rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -138,29 +139,61 @@ export const Card = styled.div`
 
 `;
 
-export const Action = styled.div`
+export const Buy = styled.div`
         display: flex;
         align-items: center;
+        justify-content: center;
+        gap: 2.3rem;
 
-
-
-        p {
-            color: ${({ theme }) => theme["base-text"]};
+        > p {
+          font-size: 1.4rem;
+          color: ${({ theme }) => theme["base-text"]};
             strong {
+              font-size: 2.4rem;
                 font-family: 'Baloo 2', sans-serif;
-            font-weight: 900;
+              font-weight: 900;
             }
 
         }
 
-        > div {
+      
 
-            input {
+          
+
+
+`
+
+export const Action = styled.div`
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            
+          > div {
+            background: ${({ theme }) => theme["base-button"]};
+            display: flex;
+            padding: 0.9rem 1.2rem;
+            border-radius: 6px;
+            gap: 0.4rem;
+              button {
+                display: flex;
+                align-items: center;
+                border: 0;
+                background: transparent;
+              }
+
+              input {
+                text-align: center;
+                background: transparent;
+                border: 0;
                 width: 2rem;
-            }
+                color: ${({ theme }) => theme["base-title"]}
+
+              }
+
+          }
 
 
-        }
+     
 
         > button {
             border: 0;
@@ -171,6 +204,4 @@ export const Action = styled.div`
             border-radius: 6px;
             min-width: 2.2rem;
         }
-
-
 `
