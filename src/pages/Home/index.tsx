@@ -110,6 +110,136 @@ export function Home() {
                             </Buy>
 
                         </Card>
+                        <Card>
+                            <img src={Coffe} alt="" />
+                            <div>
+                                <span>Tradicional</span>
+                            </div>
+
+                            <h1>Expresso Tradicional</h1>
+                            <label>o tradicional café feito com agua quente e graos móidos</label>
+
+                            <Buy>
+                                <p>R$ <strong>9,90</strong> </p>
+
+                                <Action>
+                                    <div>
+                                        <button type="button"><Minus size={14} /></button>
+                                        <input type="text" readOnly disabled value={1} />
+                                        <button type="button"><Plus size={14} /></button>
+                                    </div>
+
+                                    <button><ShoppingCart size={22} weight="fill" /></button>
+                                </Action>
+
+
+                            </Buy>
+
+                        </Card>
+                        <Card>
+                            <img src={Coffe} alt="" />
+                            <div>
+                                <span>Tradicional</span>
+                            </div>
+
+                            <h1>Expresso Tradicional</h1>
+                            <label>o tradicional café feito com agua quente e graos móidos</label>
+
+                            <Buy>
+                                <p>R$ <strong>9,90</strong> </p>
+
+                                <Action>
+                                    <div>
+                                        <button type="button"><Minus size={14} /></button>
+                                        <input type="text" readOnly disabled value={1} />
+                                        <button type="button"><Plus size={14} /></button>
+                                    </div>
+
+                                    <button><ShoppingCart size={22} weight="fill" /></button>
+                                </Action>
+
+
+                            </Buy>
+
+                        </Card>
+                        <Card>
+                            <img src={Coffe} alt="" />
+                            <div>
+                                <span>Tradicional</span>
+                            </div>
+
+                            <h1>Expresso Tradicional</h1>
+                            <label>o tradicional café feito com agua quente e graos móidos</label>
+
+                            <Buy>
+                                <p>R$ <strong>9,90</strong> </p>
+
+                                <Action>
+                                    <div>
+                                        <button type="button"><Minus size={14} /></button>
+                                        <input type="text" readOnly disabled value={1} />
+                                        <button type="button"><Plus size={14} /></button>
+                                    </div>
+
+                                    <button><ShoppingCart size={22} weight="fill" /></button>
+                                </Action>
+
+
+                            </Buy>
+
+                        </Card>
+                        <Card>
+                            <img src={Coffe} alt="" />
+                            <div>
+                                <span>Tradicional</span>
+                            </div>
+
+                            <h1>Expresso Tradicional</h1>
+                            <label>o tradicional café feito com agua quente e graos móidos</label>
+
+                            <Buy>
+                                <p>R$ <strong>9,90</strong> </p>
+
+                                <Action>
+                                    <div>
+                                        <button type="button"><Minus size={14} /></button>
+                                        <input type="text" readOnly disabled value={1} />
+                                        <button type="button"><Plus size={14} /></button>
+                                    </div>
+
+                                    <button><ShoppingCart size={22} weight="fill" /></button>
+                                </Action>
+
+
+                            </Buy>
+
+                        </Card>
+                        <Card>
+                            <img src={Coffe} alt="" />
+                            <div>
+                                <span>Tradicional</span>
+                            </div>
+
+                            <h1>Expresso Tradicional</h1>
+                            <label>o tradicional café feito com agua quente e graos móidos</label>
+
+                            <Buy>
+                                <p>R$ <strong>9,90</strong> </p>
+
+                                <Action>
+                                    <div>
+                                        <button type="button"><Minus size={14} /></button>
+                                        <input type="text" readOnly disabled value={1} />
+                                        <button type="button"><Plus size={14} /></button>
+                                    </div>
+
+                                    <button><ShoppingCart size={22} weight="fill" /></button>
+                                </Action>
+
+
+                            </Buy>
+
+                        </Card>
                     </div>
 
                 </SectionTwo>

@@ -65,19 +65,24 @@ export const SectionOne = styled.section`
       }
     }
   }
+
+  img {
+    display: block;
+  }
 `;
 
 export const SectionTwo = styled.section`
-  margin-bottom: 15rem;
+  padding-block: 3.2rem;
   > h1 {
     font-size: 3.2rem;
     line-height: 1.3;
     font-weight: 900;
     color: ${({ theme }) => theme["base-subtitle"]};
-    margin-bottom: 5.4rem;
+
   }
 
   > div {
+    margin-top: 5.4rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25.6rem, 1fr));
     gap: 4rem 3.2rem;
@@ -91,15 +96,12 @@ export const Card = styled.div`
   place-items: center;
   background: ${({ theme }) => theme["base-card"]};
   border-radius: 6px 36px 6px 36px;
-  margin-top: 5.4rem;
   min-height: 31rem;
   padding: 1.6rem;
 
   img {
     min-height: 12rem;
-    height: 12rem;
-
-
+    margin-top: -3rem;
   }
 
   > div:has(span) {
@@ -144,7 +146,7 @@ export const Buy = styled.div`
         align-items: center;
         justify-content: center;
         gap: 2.3rem;
-
+   
         > p {
           font-size: 1.4rem;
           color: ${({ theme }) => theme["base-text"]};
