@@ -4,12 +4,17 @@ import LogoCoffe from '../../assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee} from '@phosphor-icons/react'
 import { Card, PropsDataInfo} from "../../components/Card";
 import { useState, useReducer, useEffect} from "react";
-
+import CafeGelado from '../../assets/Café Gelado.svg'
+import Americano from '../../assets/Americano.svg'
+import CafeComLeite from '../../assets/Café com Leite.svg'
+import Capuccino from '../../assets/Capuccino.svg'
+import Cubano from '../../assets/Cubano.svg'
+import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 
 const DadosInitial = [
   {
   id: String(new Date().getTime()),
-  urlimg: './src/assets/Café Gelado.svg',
+  urlimg: CafeGelado,
   tag: ['Tradicional', 'Tag2'],
   title: 'Title1',
   description: 'O tradicional café feito com água quente e grãos moídos',
@@ -17,7 +22,7 @@ const DadosInitial = [
 },
 {
   id: String(new Date().getTime() + 1) ,
-  urlimg: './src/assets/Americano.svg',
+  urlimg: Americano,
   tag: ['Tag1', 'Tag2'],
   title: 'Title2',
   description: 'Expresso diluído, menos intenso que o tradicional',
@@ -25,7 +30,7 @@ const DadosInitial = [
 },
 {
   id: String(new Date().getTime() + 6),
-  urlimg: './src/assets/Capuccino.svg',
+  urlimg: CafeComLeite,
   tag: ['Tag1', 'Tag2'],
   title: 'Title10',
   description: 'Café expresso tradicional com espuma cremosa',
@@ -33,7 +38,7 @@ const DadosInitial = [
 },
 {
     id: String(new Date().getTime() + 5),
-    urlimg: './src/assets/Capuccino.svg',
+    urlimg: Capuccino,
     tag: ['Tag1', 'Tag2'],
     title: 'Title10',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
@@ -41,7 +46,7 @@ const DadosInitial = [
   },
   {
     id: String(new Date().getTime() + 4),
-    urlimg: './src/assets/Latte.svg',
+    urlimg: Cubano,
     tag: ['Tag1', 'Tag2'],
     title: 'Latte',
     description: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
@@ -57,7 +62,7 @@ const DadosInitial = [
   },
   {
     id: String(new Date().getTime() + 2),
-    urlimg: './src/assets/Capuccino.svg',
+    urlimg: ExpressoCremoso,
     tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
     title: 'Title10',
     description: 'Description10',
