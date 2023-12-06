@@ -44,7 +44,7 @@ export function Card({datainfo, onChangeValue }: PropsCard){
 
     return(
         <CardContainer>
-        <img src={`/src/assets/${datainfo.urlimg}`} alt={datainfo.title} />
+        <img src={`./src/assets/${datainfo.urlimg}`} alt={datainfo.title} />
         <div>
           {datainfo.tag.map((tag, index )=> {
                 return <span key={String(index)}>{tag}</span>
