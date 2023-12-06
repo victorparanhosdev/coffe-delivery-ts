@@ -63,7 +63,7 @@ export const Buy = styled.div`
   > p {
     font-size: 1.4rem;
     color: ${({ theme }) => theme["base-text"]};
-    width: 11rem;
+    width: 12.7rem;
     strong {
       font-size: 2.4rem;
       font-family: "Baloo 2", sans-serif;
