@@ -10,6 +10,7 @@ import CafeComLeite from '../../assets/Café com Leite.svg'
 import Capuccino from '../../assets/Capuccino.svg'
 import Cubano from '../../assets/Cubano.svg'
 import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
+import Havaiano from '../../assets/Havaiano.svg'
 
 const DadosInitial = [
   {
@@ -54,7 +55,7 @@ const DadosInitial = [
   },
   {
     id: String(new Date().getTime() + 3),
-    urlimg: './src/assets/Capuccino.svg',
+    urlimg: Havaiano,
     tag: ['Tag1', 'Tag2'],
     title: 'Title10',
     description: 'Description10',
