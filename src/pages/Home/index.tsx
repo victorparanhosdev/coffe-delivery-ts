@@ -12,68 +12,68 @@ import Cubano from '../../assets/Cubano.svg'
 import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 import Havaiano from '../../assets/Havaiano.svg'
 
-const DadosInitial = [
-  {
-  id: String(new Date().getTime()),
-  urlimg: CafeGelado,
-  tag: ['Tradicional', 'Tag2'],
-  title: 'Title1',
-  description: 'O tradicional café feito com água quente e grãos moídos',
-  price: 9.99,
-},
-{
-  id: String(new Date().getTime() + 1) ,
-  urlimg: Americano,
-  tag: ['Tag1', 'Tag2'],
-  title: 'Title2',
-  description: 'Expresso diluído, menos intenso que o tradicional',
-  price: 15.99,
-},
-{
-  id: String(new Date().getTime() + 6),
-  urlimg: CafeComLeite,
-  tag: ['Tag1', 'Tag2'],
-  title: 'Title10',
-  description: 'Café expresso tradicional com espuma cremosa',
-  price: 29.99,
-},
-{
-    id: String(new Date().getTime() + 5),
-    urlimg: Capuccino,
-    tag: ['Tag1', 'Tag2'],
-    title: 'Title10',
-    description: 'Meio a meio de expresso tradicional com leite vaporizado',
-    price: 29.99,
-  },
-  {
-    id: String(new Date().getTime() + 4),
-    urlimg: Cubano,
-    tag: ['Tag1', 'Tag2'],
-    title: 'Latte',
-    description: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-    price: 29.99,
-  },
-  {
-    id: String(new Date().getTime() + 3),
-    urlimg: Havaiano,
-    tag: ['Tag1', 'Tag2'],
-    title: 'Title10',
-    description: 'Description10',
-    price: 29.99,
-  },
-  {
-    id: String(new Date().getTime() + 2),
-    urlimg: ExpressoCremoso,
-    tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
-    title: 'Title10',
-    description: 'Description10',
-    price: 29.99,
-  }
-]
 
 
 export function Home() {
-
+  const DadosInitial = [
+    {
+    id: String(new Date().getTime()),
+    urlimg: CafeGelado,
+    tag: ['Tradicional', 'Tag2'],
+    title: 'Title1',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.99,
+  },
+  {
+    id: String(new Date().getTime() + 1) ,
+    urlimg: Americano,
+    tag: ['Tag1', 'Tag2'],
+    title: 'Title2',
+    description: 'Expresso diluído, menos intenso que o tradicional',
+    price: 15.99,
+  },
+  {
+    id: String(new Date().getTime() + 6),
+    urlimg: CafeComLeite,
+    tag: ['Tag1', 'Tag2'],
+    title: 'Title10',
+    description: 'Café expresso tradicional com espuma cremosa',
+    price: 29.99,
+  },
+  {
+      id: String(new Date().getTime() + 5),
+      urlimg: Capuccino,
+      tag: ['Tag1', 'Tag2'],
+      title: 'Title10',
+      description: 'Meio a meio de expresso tradicional com leite vaporizado',
+      price: 29.99,
+    },
+    {
+      id: String(new Date().getTime() + 4),
+      urlimg: Cubano,
+      tag: ['Tag1', 'Tag2'],
+      title: 'Latte',
+      description: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+      price: 29.99,
+    },
+    {
+      id: String(new Date().getTime() + 3),
+      urlimg: Havaiano,
+      tag: ['Tag1', 'Tag2'],
+      title: 'Title10',
+      description: 'Description10',
+      price: 29.99,
+    },
+    {
+      id: String(new Date().getTime() + 2),
+      urlimg: ExpressoCremoso,
+      tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
+      title: 'Title10',
+      description: 'Description10',
+      price: 29.99,
+    }
+  ]
+  
   
   const [DataCoffeeInfo, setDataCoffeeInfo] = useState(DadosInitial)
 
