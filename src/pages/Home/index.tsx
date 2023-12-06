@@ -2,28 +2,40 @@ import { SectionOne, SectionTwo} from "./style";
 import { Header } from "../../components/Header";
 import LogoCoffe from '../../assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee} from '@phosphor-icons/react'
-import { Card } from "../../components/Card";
+import { Card} from "../../components/Card";
+import { useState, useEffect } from "react";
 
 
-const DataCoffeeInfo = [
+
+
+export function Home() {
+  const [DadosInitial] = useState([
     {
-      id: String(new Date().getTime()),
-      urlimg: 'Café Gelado.svg',
-      tag: ['Tag1', 'Tag2'],
-      title: 'Title1',
-      description: 'O tradicional tradicional tradicionaltradicional café feito com água quente e grãos moídos',
-      price: 9.99,
-    },
-    {
-      id: String(new Date().getTime() + 1) ,
-      urlimg: 'Americano.svg',
-      tag: ['Tag1', 'Tag2'],
-      title: 'Title2',
-      description: 'Description2',
-      price: 15.99,
-    },
-    {
-      id: String(new Date().getTime() + 6),
+    id: String(new Date().getTime()),
+    urlimg: 'Café Gelado.svg',
+    tag: ['Tag1', 'Tag2'],
+    title: 'Title1',
+    description: 'O tradicional tradicional tradicionaltradicional café feito com água quente e grãos moídos',
+    price: 9.99,
+  },
+  {
+    id: String(new Date().getTime() + 1) ,
+    urlimg: 'Americano.svg',
+    tag: ['Tag1', 'Tag2'],
+    title: 'Title2',
+    description: 'Description2',
+    price: 15.99,
+  },
+  {
+    id: String(new Date().getTime() + 6),
+    urlimg: 'Capuccino.svg',
+    tag: ['Tag1', 'Tag2'],
+    title: 'Title10',
+    description: 'Description10',
+    price: 29.99,
+  },
+  {
+      id: String(new Date().getTime() + 5),
       urlimg: 'Capuccino.svg',
       tag: ['Tag1', 'Tag2'],
       title: 'Title10',
@@ -31,42 +43,53 @@ const DataCoffeeInfo = [
       price: 29.99,
     },
     {
-        id: String(new Date().getTime() + 5),
-        urlimg: 'Capuccino.svg',
-        tag: ['Tag1', 'Tag2'],
-        title: 'Title10',
-        description: 'Description10',
-        price: 29.99,
-      },
-      {
-        id: String(new Date().getTime() + 4),
-        urlimg: 'Capuccino.svg',
-        tag: ['Tag1', 'Tag2'],
-        title: 'Title10',
-        description: 'Description10',
-        price: 29.99,
-      },
-      {
-        id: String(new Date().getTime() + 3),
-        urlimg: 'Capuccino.svg',
-        tag: ['Tag1', 'Tag2'],
-        title: 'Title10',
-        description: 'Description10',
-        price: 29.99,
-      },
-      {
-        id: String(new Date().getTime() + 2),
-        urlimg: 'Capuccino.svg',
-        tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
-        title: 'Title10',
-        description: 'Description10',
-        price: 29.99,
-      },
+      id: String(new Date().getTime() + 4),
+      urlimg: 'Capuccino.svg',
+      tag: ['Tag1', 'Tag2'],
+      title: 'Title10',
+      description: 'Description10',
+      price: 29.99,
+    },
+    {
+      id: String(new Date().getTime() + 3),
+      urlimg: 'Capuccino.svg',
+      tag: ['Tag1', 'Tag2'],
+      title: 'Title10',
+      description: 'Description10',
+      price: 29.99,
+    },
+    {
+      id: String(new Date().getTime() + 2),
+      urlimg: 'Capuccino.svg',
+      tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
+      title: 'Title10',
+      description: 'Description10',
+      price: 29.99,
+    },])
+  const [DataCoffeeInfo, setDataCoffeeInfo] = useState(DadosInitial)
 
-  ];
+  function getValueCard(value: number, data: string){
+    setDataCoffeeInfo((prevState) => {
+      return prevState.map((dataCoffee) => {
+        if (dataCoffee.id === data) {
+          const originalData = DadosInitial.find((dadoss) => dadoss.id === data);
+          if (originalData) {
+            return {
+              ...dataCoffee,
+              price: originalData.price * value,
+            };
+          }
+        }
+        return dataCoffee;
+      });
+    });
+   
 
-export function Home() {
+  }
+  useEffect(()=> {
+    console.log(DataCoffeeInfo)
 
+  }, [DataCoffeeInfo])
 
     return (
         <div>
@@ -97,7 +120,7 @@ export function Home() {
                     <div>
                         {DataCoffeeInfo.length > 0 && DataCoffeeInfo.map(data => {
                             return (
-                                <Card key={String(data.id)} datainfo={data}/>
+                                <Card onChangeValue={getValueCard} key={String(data.id)} datainfo={data}/>
                             )
                         })}
                   

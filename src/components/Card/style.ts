@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  place-items: center;
   place-content: space-between;
   background: ${({ theme }) => theme["base-card"]};
   border-radius: 6px 36px 6px 36px;
@@ -13,6 +12,7 @@ export const CardContainer = styled.div`
   img {
     min-height: 12rem;
     margin-top: -3rem;
+    place-self: center;
   }
 
   > div:has(span) {
@@ -63,6 +63,7 @@ export const Buy = styled.div`
   > p {
     font-size: 1.4rem;
     color: ${({ theme }) => theme["base-text"]};
+    width: 11rem;
     strong {
       font-size: 2.4rem;
       font-family: "Baloo 2", sans-serif;
@@ -82,7 +83,9 @@ export const Action = styled.div`
     padding: 0.9rem 1.2rem;
     border-radius: 6px;
     gap: 0.4rem;
+    width: 7.2rem;
     button {
+      width: 3.8rem;
       color: ${({ theme }) => theme.purple};
       display: flex;
       align-items: center;
