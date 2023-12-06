@@ -2,8 +2,8 @@ import { SectionOne, SectionTwo} from "./style";
 import { Header } from "../../components/Header";
 import LogoCoffe from '../../assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee} from '@phosphor-icons/react'
-import { Card, PropsDataInfo} from "../../components/Card";
-import { useState, useReducer, useEffect} from "react";
+import { Card} from "../../components/Card";
+import { useState} from "react";
 import CafeGelado from '../../assets/Café Gelado.svg'
 import Americano from '../../assets/Americano.svg'
 import CafeComLeite from '../../assets/Café com Leite.svg'
