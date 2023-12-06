@@ -1,9 +1,9 @@
-import { SectionOne, SectionTwo} from "./style";
+import { SectionOne, SectionTwo } from "./style";
 import { Header } from "../../components/Header";
 import LogoCoffe from '../../assets/Coffe-Logo.svg'
-import { ShoppingCart, Timer, Package, Coffee} from '@phosphor-icons/react'
-import { Card} from "../../components/Card";
-import { useState} from "react";
+import { ShoppingCart, Timer, Package, Coffee } from '@phosphor-icons/react'
+import { Card, PropsDataInfo } from "../../components/Card";
+import { useEffect, useState } from "react";
 import CafeGelado from '../../assets/Café Gelado.svg'
 import Americano from '../../assets/Americano.svg'
 import CafeComLeite from '../../assets/Café com Leite.svg'
@@ -13,10 +13,8 @@ import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 import Havaiano from '../../assets/Havaiano.svg'
 
 
-
-export function Home() {
-  const DadosInitial = [
-    {
+const DataCoffeeInfo = [
+  {
     id: String(new Date().getTime()),
     urlimg: CafeGelado,
     tag: ['Tradicional', 'Tag2'],
@@ -25,7 +23,7 @@ export function Home() {
     price: 9.99,
   },
   {
-    id: String(new Date().getTime() + 1) ,
+    id: String(new Date().getTime() + 1),
     urlimg: Americano,
     tag: ['Tag1', 'Tag2'],
     title: 'Title2',
@@ -41,48 +39,62 @@ export function Home() {
     price: 29.99,
   },
   {
-      id: String(new Date().getTime() + 5),
-      urlimg: Capuccino,
-      tag: ['Tag1', 'Tag2'],
-      title: 'Title10',
-      description: 'Meio a meio de expresso tradicional com leite vaporizado',
-      price: 29.99,
-    },
-    {
-      id: String(new Date().getTime() + 4),
-      urlimg: Cubano,
-      tag: ['Tag1', 'Tag2'],
-      title: 'Latte',
-      description: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-      price: 29.99,
-    },
-    {
-      id: String(new Date().getTime() + 3),
-      urlimg: Havaiano,
-      tag: ['Tag1', 'Tag2'],
-      title: 'Title10',
-      description: 'Description10',
-      price: 29.99,
-    },
-    {
-      id: String(new Date().getTime() + 2),
-      urlimg: ExpressoCremoso,
-      tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
-      title: 'Title10',
-      description: 'Description10',
-      price: 29.99,
+    id: String(new Date().getTime() + 5),
+    urlimg: Capuccino,
+    tag: ['Tag1', 'Tag2'],
+    title: 'Title10',
+    description: 'Meio a meio de expresso tradicional com leite vaporizado',
+    price: 29.99,
+  },
+  {
+    id: String(new Date().getTime() + 4),
+    urlimg: Cubano,
+    tag: ['Tag1', 'Tag2'],
+    title: 'Latte',
+    description: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+    price: 29.99,
+  },
+  {
+    id: String(new Date().getTime() + 3),
+    urlimg: Havaiano,
+    tag: ['Tag1', 'Tag2'],
+    title: 'Title10',
+    description: 'Description10',
+    price: 29.99,
+  },
+  {
+    id: String(new Date().getTime() + 2),
+    urlimg: ExpressoCremoso,
+    tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
+    title: 'Title10',
+    description: 'Description10',
+    price: 29.99,
+  }
+]
+
+
+export function Home() {
+
+  const [selectData, setselectData] = useState<any[]>([])
+
+
+
+  function getValueCard(value: number, data: PropsDataInfo) {
+    const SelectCoffe = {
+      ...data,
+      value
     }
-  ]
-  
-  
-  const [DataCoffeeInfo, setDataCoffeeInfo] = useState(DadosInitial)
+    setselectData(prevState => [...prevState, SelectCoffe])
+
+  }
 
 
-  function getValueCard(value: number, data: string){
-    setDataCoffeeInfo((prevState) => {
+
+
+    /*setDataCoffeeInfo((prevState) => {
       return prevState.map((dataCoffee) => {
         if (dataCoffee.id === data) {
-          const originalData = DadosInitial.find((dadoss) => dadoss.id === data);
+          const originalData = DataCoffeeInfo.find((dadoss) => dadoss.id === data);
           if (originalData) {
             return {
               ...dataCoffee,
@@ -94,50 +106,63 @@ export function Home() {
       });
     });
 
- 
-   
+    */
 
-  }
+    useEffect(()=> {
+      const LocalStorageCoffe = JSON.parse(localStorage.getItem('@coffe-select_1.0.0:') || '[]') || [];
+      console.log(LocalStorageCoffe)
 
+      if(LocalStorageCoffe){
+        localStorage.setItem('@coffe-select_1.0.0:', JSON.stringify(selectData))
+        
+      }else {
+        console.log('entrei no else')
 
-    return (
-        <div>
-            <Header />
-            <main>
-                <SectionOne>
-                    <div >
-                        <div >
-                            <h1>Encontre o café perfeito para qualquer hora do dia</h1>
-                            <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
+      }
 
-                            <ul>
-                                <li><ShoppingCart size={32} weight="fill" /><p>Compra simples e segura</p></li>
-                                <li><Package size={32} weight="fill" /><p>Embalagem mantém o café intacto</p></li>
-                                <li><Timer size={32} weight="fill" /><p>Entrega rápida e rastreada</p></li>
-                                <li><Coffee size={32} weight="fill" /><p>O café chega fresquinho até você</p></li>
-                            </ul>
+      
 
-                        </div>
+    
+    },[selectData])
 
-                        <img src={LogoCoffe} alt="Logo Café" />
-                    </div>
-                </SectionOne>
+  return (
+    <div>
+      <Header />
+      <main>
+        <SectionOne>
+          <div >
+            <div >
+              <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+              <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
 
-                <SectionTwo>
-                    <h1>Nossos Cafés</h1>
+              <ul>
+                <li><ShoppingCart size={32} weight="fill" /><p>Compra simples e segura</p></li>
+                <li><Package size={32} weight="fill" /><p>Embalagem mantém o café intacto</p></li>
+                <li><Timer size={32} weight="fill" /><p>Entrega rápida e rastreada</p></li>
+                <li><Coffee size={32} weight="fill" /><p>O café chega fresquinho até você</p></li>
+              </ul>
 
-                    <div>
-                        {DataCoffeeInfo.length > 0 && DataCoffeeInfo.map(data => {
-                            return (
-                                <Card onChangeValue={getValueCard} key={String(data.id)} datainfo={data}/>
-                            )
-                        })}
-                  
-                    </div>
+            </div>
 
-                </SectionTwo>
-            </main>
+            <img src={LogoCoffe} alt="Logo Café" />
+          </div>
+        </SectionOne>
 
-        </div>
-    )
+        <SectionTwo>
+          <h1>Nossos Cafés</h1>
+
+          <div>
+            {DataCoffeeInfo.length > 0 && DataCoffeeInfo.map(data => {
+              return (
+                <Card onChangeValue={getValueCard} key={String(data.id)} datainfo={data} />
+              )
+            })}
+
+          </div>
+
+        </SectionTwo>
+      </main>
+
+    </div>
+  )
 }

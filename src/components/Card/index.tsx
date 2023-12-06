@@ -10,31 +10,36 @@ export interface PropsDataInfo {
     tag: string[],
     title: string,
     description: string,
-    price: number,
-
+    price: number
 }
 
 export interface PropsCard {
     datainfo: PropsDataInfo,
-    onChangeValue: (value: number, data: string)=> void
+    onChangeValue: (value: number, data: PropsDataInfo)=> void,
+
 
 }
 
-export function Card({datainfo, onChangeValue }: PropsCard){
+export function Card({datainfo, onChangeValue}: PropsCard){
 
-    const [dataValue, setdataValue] = useState<number>(1);
+    const [dataValue, setdataValue] = useState(1);
 
+    function handleCart(){
+        onChangeValue(dataValue, datainfo)
+        
+    }
     
       const decrementValue = () => {
         const min = Math.max(dataValue - 1, 1)
         setdataValue(min);
-        onChangeValue(min, datainfo.id)
+
       };
     
       const incrementValue = () => {
         const max = dataValue + 1
         setdataValue(max);
-        onChangeValue(max, datainfo.id)
+
+
      
       };
 
@@ -62,7 +67,7 @@ export function Card({datainfo, onChangeValue }: PropsCard){
                     <input type="text" readOnly disabled value={dataValue} />
                     <button name='buttonmax' onClick={incrementValue} type="button"><Plus size={14} /></button>
                 </div>
-                <button><ShoppingCart size={22} weight="fill" /></button>
+                <button onClick={handleCart}><ShoppingCart size={22} weight="fill" /></button>
             </Action>
         </Buy>
     </CardContainer>
