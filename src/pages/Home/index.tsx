@@ -2,71 +2,75 @@ import { SectionOne, SectionTwo} from "./style";
 import { Header } from "../../components/Header";
 import LogoCoffe from '../../assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee} from '@phosphor-icons/react'
-import { Card} from "../../components/Card";
-import { useState, useEffect } from "react";
+import { Card, PropsDataInfo} from "../../components/Card";
+import { useState, useReducer, useEffect} from "react";
 
 
-
-
-export function Home() {
-  const [DadosInitial] = useState([
-    {
-    id: String(new Date().getTime()),
-    urlimg: 'Café Gelado.svg',
+const DadosInitial = [
+  {
+  id: String(new Date().getTime()),
+  urlimg: './src/assets/Café Gelado.svg',
+  tag: ['Tradicional', 'Tag2'],
+  title: 'Title1',
+  description: 'O tradicional café feito com água quente e grãos moídos',
+  price: 9.99,
+},
+{
+  id: String(new Date().getTime() + 1) ,
+  urlimg: './src/assets/Americano.svg',
+  tag: ['Tag1', 'Tag2'],
+  title: 'Title2',
+  description: 'Expresso diluído, menos intenso que o tradicional',
+  price: 15.99,
+},
+{
+  id: String(new Date().getTime() + 6),
+  urlimg: './src/assets/Capuccino.svg',
+  tag: ['Tag1', 'Tag2'],
+  title: 'Title10',
+  description: 'Café expresso tradicional com espuma cremosa',
+  price: 29.99,
+},
+{
+    id: String(new Date().getTime() + 5),
+    urlimg: './src/assets/Capuccino.svg',
     tag: ['Tag1', 'Tag2'],
-    title: 'Title1',
-    description: 'O tradicional tradicional tradicionaltradicional café feito com água quente e grãos moídos',
-    price: 9.99,
+    title: 'Title10',
+    description: 'Meio a meio de expresso tradicional com leite vaporizado',
+    price: 29.99,
   },
   {
-    id: String(new Date().getTime() + 1) ,
-    urlimg: 'Americano.svg',
+    id: String(new Date().getTime() + 4),
+    urlimg: './src/assets/Latte.svg',
     tag: ['Tag1', 'Tag2'],
-    title: 'Title2',
-    description: 'Description2',
-    price: 15.99,
+    title: 'Latte',
+    description: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+    price: 29.99,
   },
   {
-    id: String(new Date().getTime() + 6),
-    urlimg: 'Capuccino.svg',
+    id: String(new Date().getTime() + 3),
+    urlimg: './src/assets/Capuccino.svg',
     tag: ['Tag1', 'Tag2'],
     title: 'Title10',
     description: 'Description10',
     price: 29.99,
   },
   {
-      id: String(new Date().getTime() + 5),
-      urlimg: 'Capuccino.svg',
-      tag: ['Tag1', 'Tag2'],
-      title: 'Title10',
-      description: 'Description10',
-      price: 29.99,
-    },
-    {
-      id: String(new Date().getTime() + 4),
-      urlimg: 'Capuccino.svg',
-      tag: ['Tag1', 'Tag2'],
-      title: 'Title10',
-      description: 'Description10',
-      price: 29.99,
-    },
-    {
-      id: String(new Date().getTime() + 3),
-      urlimg: 'Capuccino.svg',
-      tag: ['Tag1', 'Tag2'],
-      title: 'Title10',
-      description: 'Description10',
-      price: 29.99,
-    },
-    {
-      id: String(new Date().getTime() + 2),
-      urlimg: 'Capuccino.svg',
-      tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
-      title: 'Title10',
-      description: 'Description10',
-      price: 29.99,
-    },])
+    id: String(new Date().getTime() + 2),
+    urlimg: './src/assets/Capuccino.svg',
+    tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
+    title: 'Title10',
+    description: 'Description10',
+    price: 29.99,
+  }
+]
+
+
+export function Home() {
+
+  
   const [DataCoffeeInfo, setDataCoffeeInfo] = useState(DadosInitial)
+
 
   function getValueCard(value: number, data: string){
     setDataCoffeeInfo((prevState) => {
@@ -76,20 +80,19 @@ export function Home() {
           if (originalData) {
             return {
               ...dataCoffee,
-              price: originalData.price * value,
+              value
             };
           }
         }
         return dataCoffee;
       });
     });
+
+ 
    
 
   }
-  useEffect(()=> {
-    console.log(DataCoffeeInfo)
 
-  }, [DataCoffeeInfo])
 
     return (
         <div>

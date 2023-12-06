@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import {CardContainer, Buy, Action} from './style'
 
 import { ShoppingCart, Minus, Plus } from "@phosphor-icons/react";
@@ -11,6 +11,7 @@ export interface PropsDataInfo {
     title: string,
     description: string,
     price: number,
+
 }
 
 export interface PropsCard {
@@ -23,28 +24,29 @@ export function Card({datainfo, onChangeValue }: PropsCard){
 
     const [dataValue, setdataValue] = useState<number>(1);
 
-   
-    useEffect(() => {
-    
-        onChangeValue(dataValue, datainfo.id);
-  
-      }, [dataValue]);
     
       const decrementValue = () => {
-        setdataValue((value) => Math.max(value - 1, 1));
+        const min = Math.max(dataValue - 1, 1)
+        setdataValue(min);
+        onChangeValue(min, datainfo.id)
       };
     
       const incrementValue = () => {
-        setdataValue((value) => value + 1);
+        const max = dataValue + 1
+        setdataValue(max);
+        onChangeValue(max, datainfo.id)
+     
       };
 
       const numero = datainfo.price;
       const formatoPadrao = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       const numeroFormatado = formatoPadrao.replace('R$', '').trim();
 
+
+
     return(
         <CardContainer>
-        <img src={`./src/assets/${datainfo.urlimg}`} alt={datainfo.title} />
+        <img src={datainfo.urlimg} alt={datainfo.title} />
         <div>
           {datainfo.tag.map((tag, index )=> {
                 return <span key={String(index)}>{tag}</span>

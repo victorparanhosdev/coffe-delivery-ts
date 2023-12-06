@@ -57,17 +57,25 @@ export const CardContainer = styled.div`
 export const Buy = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: space-between;
+
 
   > p {
     font-size: 1.4rem;
     color: ${({ theme }) => theme["base-text"]};
-    width: 12.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+   
+
     strong {
+      margin-left: 0.3rem;
       font-size: 2.4rem;
       font-family: "Baloo 2", sans-serif;
       font-weight: 900;
+   
+
     }
   }
 `;
@@ -75,16 +83,17 @@ export const Buy = styled.div`
 export const Action = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+ 
 
   > div {
     background: ${({ theme }) => theme["base-button"]};
     display: flex;
-    padding: 0.9rem 1.2rem;
+    padding: 0.8rem;
     border-radius: 6px;
     gap: 0.4rem;
     width: 7.2rem;
     button {
+  
       width: 3.8rem;
       color: ${({ theme }) => theme.purple};
       display: flex;
@@ -115,6 +124,7 @@ export const Action = styled.div`
     border-radius: 6px;
     min-width: 2.2rem;
     transition: background 0.2s;
+    margin-left: 0.8rem;
     &:hover {
       background: ${({ theme }) => theme["purple"]};
     }
