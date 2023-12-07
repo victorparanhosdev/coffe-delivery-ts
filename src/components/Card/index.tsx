@@ -10,7 +10,8 @@ export interface PropsDataInfo {
     tag: string[],
     title: string,
     description: string,
-    price: number
+    price: number,
+    value?: number
 }
 
 export interface PropsCard {
@@ -26,7 +27,7 @@ export function Card({datainfo, onChangeValue}: PropsCard){
 
     function handleCart(){
         onChangeValue(dataValue, datainfo)
-        
+        setdataValue(1)
     }
     
       const decrementValue = () => {

@@ -41,7 +41,7 @@ export const Menu = styled.menu`
     }
 }
 
-button {
+a {
     display: flex;
     align-items: center;
     background: ${({theme})=> theme["yellow-light"] };

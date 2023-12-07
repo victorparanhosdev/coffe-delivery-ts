@@ -76,7 +76,7 @@ const DataCoffeeInfo = [
 export function Home() {
 
   const [selectData, setselectData] = useState<any[]>([])
-
+  const [dataLocalStorage, setdataLocalStorage] = useState<PropsDataInfo[]>([])
 
 
   function getValueCard(value: number, data: PropsDataInfo) {
@@ -84,50 +84,49 @@ export function Home() {
       ...data,
       value
     }
-    setselectData(prevState => [...prevState, SelectCoffe])
+    const existData = dataLocalStorage.find(response => response.id === data.id)
+    if (existData) {
+      const newUpdate = dataLocalStorage.map(dataCoffe => {
+        if (dataCoffe.id === data.id) {
+          return { ...dataCoffe, value: value + (dataCoffe.value || value) }
+        }
+        return dataCoffe
+      })
+      setselectData(newUpdate)
+      localStorage.setItem("@coffe-select_1.0.0:", JSON.stringify(newUpdate))
+
+
+    } else {
+      const newArrayCoffe = [...selectData, SelectCoffe]
+      setselectData(newArrayCoffe)
+      localStorage.setItem("@coffe-select_1.0.0:", JSON.stringify(newArrayCoffe))
+
+    }
+
 
   }
 
 
 
 
-    /*setDataCoffeeInfo((prevState) => {
-      return prevState.map((dataCoffee) => {
-        if (dataCoffee.id === data) {
-          const originalData = DataCoffeeInfo.find((dadoss) => dadoss.id === data);
-          if (originalData) {
-            return {
-              ...dataCoffee,
-              value
-            };
-          }
-        }
-        return dataCoffee;
-      });
-    });
 
-    */
 
-    useEffect(()=> {
-      const LocalStorageCoffe = JSON.parse(localStorage.getItem('@coffe-select_1.0.0:') || '[]') || [];
-      console.log(LocalStorageCoffe)
+  useEffect(() => {
+    const LocalStorageCoffe = localStorage.getItem('@coffe-select_1.0.0:') || '[]';
 
-      if(LocalStorageCoffe){
-        localStorage.setItem('@coffe-select_1.0.0:', JSON.stringify(selectData))
-        
-      }else {
-        console.log('entrei no else')
 
-      }
+    if (JSON.parse(LocalStorageCoffe).length > 0) {
+      setdataLocalStorage(JSON.parse(LocalStorageCoffe))
 
-      
+    }
 
-    
-    },[selectData])
+
+
+  }, [selectData])
 
   return (
     <div>
-      <Header />
+      <Header valueCart={dataLocalStorage}/>
       <main>
         <SectionOne>
           <div >
