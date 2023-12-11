@@ -3,7 +3,6 @@ import { Header } from "../../components/Header";
 import LogoCoffe from '../../assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee } from '@phosphor-icons/react'
 import { Card, PropsDataInfo } from "../../components/Card";
-import { useEffect, useState } from "react";
 import CafeGelado from '../../assets/Café Gelado.svg'
 import Americano from '../../assets/Americano.svg'
 import CafeComLeite from '../../assets/Café com Leite.svg'
@@ -11,7 +10,7 @@ import Capuccino from '../../assets/Capuccino.svg'
 import Cubano from '../../assets/Cubano.svg'
 import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 import Havaiano from '../../assets/Havaiano.svg'
-
+import {useCart} from '../../hooks/context'
 
 const DataCoffeeInfo = [
   {
@@ -74,11 +73,7 @@ const DataCoffeeInfo = [
 
 
 export function Home() {
-
-
-  const [selectData, setselectData] = useState<any[]>([])
-  const [dataLocalStorage, setdataLocalStorage] = useState<PropsDataInfo[]>([])
-
+  const {dataLocalStorage, setselectData, selectData} = useCart()
 
   function getValueCard(value: number, data: PropsDataInfo) {
     const SelectCoffe = {
@@ -110,24 +105,9 @@ export function Home() {
 
 
 
-
-
-  useEffect(() => {
-    const LocalStorageCoffe = localStorage.getItem('@coffe-select_1.0.0:') || '[]';
-
-
-    if (JSON.parse(LocalStorageCoffe).length > 0) {
-      setdataLocalStorage(JSON.parse(LocalStorageCoffe))
-
-    }
-
-
-
-  }, [selectData])
-
   return (
     <div>
-      <Header valueCart={dataLocalStorage}/>
+      <Header/>
       <main>
         <SectionOne>
           <div >

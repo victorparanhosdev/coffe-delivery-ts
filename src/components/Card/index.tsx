@@ -17,8 +17,6 @@ export interface PropsDataInfo {
 export interface PropsCard {
     datainfo: PropsDataInfo,
     onChangeValue: (value: number, data: PropsDataInfo)=> void,
-
-
 }
 
 export function Card({datainfo, onChangeValue}: PropsCard){

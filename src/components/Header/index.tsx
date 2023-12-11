@@ -2,13 +2,13 @@ import {HeaderContainer, Menu} from './style'
 import Logo from '../../assets/Logo.svg'
 import { ShoppingCart, MapPin } from "@phosphor-icons/react";
 import { NavLink } from 'react-router-dom';
-import {PropsDataInfo } from "../../components/Card";
+import { useCart } from '../../hooks/context';
 
-interface PropsValueCart {
-    valueCart?: PropsDataInfo[]
-}
 
-export function Header({valueCart}: PropsValueCart){
+export function Header(){
+
+    const {dataLocalStorage} = useCart()
+
     return(
         <HeaderContainer>
             <nav>
@@ -16,7 +16,7 @@ export function Header({valueCart}: PropsValueCart){
 
                 <Menu>
                     <div><MapPin size={22} weight="fill" /><span>Porto Alegre, RS</span></div>
-                    <NavLink to="/payment"><ShoppingCart size={22} weight="fill"/><span>{valueCart && valueCart.length ? valueCart.length : 0}</span></NavLink>
+                    <NavLink to="/payment"><ShoppingCart size={22} weight="fill"/><span>{dataLocalStorage && dataLocalStorage.length ? dataLocalStorage.length : 0}</span></NavLink>
                 </Menu>
                 
             </nav>
