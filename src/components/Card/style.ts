@@ -128,5 +128,9 @@ export const Action = styled.div`
     &:hover {
       background: ${({ theme }) => theme["purple"]};
     }
+
+
   }
+
+ 
 `;

@@ -23,9 +23,15 @@ export function Card({datainfo, onChangeValue}: PropsCard){
 
     const [dataValue, setdataValue] = useState(1);
 
+
     function handleCart(){
         onChangeValue(dataValue, datainfo)
         setdataValue(1)
+
+     
+
+
+
     }
     
       const decrementValue = () => {
@@ -45,7 +51,6 @@ export function Card({datainfo, onChangeValue}: PropsCard){
       const numero = datainfo.price;
       const formatoPadrao = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       const numeroFormatado = formatoPadrao.replace('R$', '').trim();
-
 
 
     return(

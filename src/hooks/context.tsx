@@ -4,8 +4,8 @@ import { PropsDataInfo } from "../components/Card";
 
 interface PropsCardContext {
 dataLocalStorage: PropsDataInfo[],
-selectData: PropsDataInfo[],
-setselectData: (value: PropsDataInfo[])=> void
+selectData: PropsDataInfo[] | [],
+setSelectDataFun: (value: PropsDataInfo[])=> void
 }
 
 const CartContext = createContext({} as PropsCardContext)
@@ -15,8 +15,12 @@ const CartContext = createContext({} as PropsCardContext)
 function CartProvider({children}:any){
 
     const [dataLocalStorage, setdataLocalStorage] = useState<PropsDataInfo[]>([])
-    const [selectData, setselectData] = useState<PropsDataInfo[]>([])
+    const [selectData, setselectData] = useState<PropsDataInfo[] | []>([])
 
+    function setSelectDataFun(value: PropsDataInfo[]){
+        setselectData(value)
+    }
+    
     useEffect(() => {
         const LocalStorageCoffe = localStorage.getItem('@coffe-select_1.0.0:') || '[]';
         const LocalStorageParse = JSON.parse(LocalStorageCoffe)
@@ -30,7 +34,7 @@ function CartProvider({children}:any){
       }, [selectData])
 
     return(
-        <CartContext.Provider value={{dataLocalStorage, selectData, setselectData}}>
+        <CartContext.Provider value={{dataLocalStorage, selectData, setSelectDataFun}}>
             {children}
         </CartContext.Provider>
     )

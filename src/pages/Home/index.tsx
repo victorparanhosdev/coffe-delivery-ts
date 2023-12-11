@@ -73,7 +73,7 @@ const DataCoffeeInfo = [
 
 
 export function Home() {
-  const {dataLocalStorage, setselectData, selectData} = useCart()
+  const {dataLocalStorage, setSelectDataFun, selectData} = useCart()
 
   function getValueCard(value: number, data: PropsDataInfo) {
     const SelectCoffe = {
@@ -88,13 +88,13 @@ export function Home() {
         }
         return dataCoffe
       })
-      setselectData(newUpdate)
+      setSelectDataFun(newUpdate)
       localStorage.setItem("@coffe-select_1.0.0:", JSON.stringify(newUpdate))
 
 
     } else {
       const newArrayCoffe = [...selectData, SelectCoffe]
-      setselectData(newArrayCoffe)
+      setSelectDataFun(newArrayCoffe)
       localStorage.setItem("@coffe-select_1.0.0:", JSON.stringify(newArrayCoffe))
 
     }
