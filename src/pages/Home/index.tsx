@@ -14,7 +14,7 @@ import {useCart} from '../../hooks/context'
 
 const DataCoffeeInfo = [
   {
-    id: String(new Date().getTime()),
+    id:String(1),
     urlimg: CafeGelado,
     tag: ['Tradicional', 'Tag2'],
     title: 'Title1',
@@ -22,7 +22,7 @@ const DataCoffeeInfo = [
     price: 9.99,
   },
   {
-    id: String(new Date().getTime() + 1),
+    id: String(2),
     urlimg: Americano,
     tag: ['Tag1', 'Tag2'],
     title: 'Title2',
@@ -30,7 +30,7 @@ const DataCoffeeInfo = [
     price: 15.99,
   },
   {
-    id: String(new Date().getTime() + 6),
+    id: String(3),
     urlimg: CafeComLeite,
     tag: ['Tag1', 'Tag2'],
     title: 'Title10',
@@ -38,7 +38,7 @@ const DataCoffeeInfo = [
     price: 29.99,
   },
   {
-    id: String(new Date().getTime() + 5),
+    id: String(4),
     urlimg: Capuccino,
     tag: ['Tag1', 'Tag2'],
     title: 'Title10',
@@ -46,7 +46,7 @@ const DataCoffeeInfo = [
     price: 29.99,
   },
   {
-    id: String(new Date().getTime() + 4),
+    id: String(5),
     urlimg: Cubano,
     tag: ['Tag1', 'Tag2'],
     title: 'Latte',
@@ -54,7 +54,7 @@ const DataCoffeeInfo = [
     price: 29.99,
   },
   {
-    id: String(new Date().getTime() + 3),
+    id: String(6),
     urlimg: Havaiano,
     tag: ['Tag1', 'Tag2'],
     title: 'Title10',
@@ -62,7 +62,7 @@ const DataCoffeeInfo = [
     price: 29.99,
   },
   {
-    id: String(new Date().getTime() + 2),
+    id: String(7),
     urlimg: ExpressoCremoso,
     tag: ['Tag1', 'Tag2', 'tag3', 'Tag1', 'Tag2', 'tag3'],
     title: 'Title10',
