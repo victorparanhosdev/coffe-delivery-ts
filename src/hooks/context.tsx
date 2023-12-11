@@ -12,7 +12,7 @@ const CartContext = createContext({} as PropsCardContext)
 
 
 
-export function CartProvider({children}:any){
+function CartProvider({children}:any){
 
     const [dataLocalStorage, setdataLocalStorage] = useState<PropsDataInfo[]>([])
     const [selectData, setselectData] = useState<PropsDataInfo[]>([])
@@ -36,7 +36,9 @@ export function CartProvider({children}:any){
     )
 }
 
-export function useCart(){
+function useCart(){
     const context = useContext(CartContext)
     return context
 }
+
+export {CartProvider, useCart}
