@@ -12,6 +12,7 @@ import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 import Havaiano from '../../assets/Havaiano.svg'
 import {useCart} from '../../hooks/context'
 
+
 const DataCoffeeInfo = [
   {
     id:String(1),
@@ -75,7 +76,10 @@ const DataCoffeeInfo = [
 export function Home() {
   const {dataLocalStorage, setSelectDataFun, selectData} = useCart()
 
+
+
   function getValueCard(value: number, data: PropsDataInfo) {
+ 
     const SelectCoffe = {
       ...data,
       value
