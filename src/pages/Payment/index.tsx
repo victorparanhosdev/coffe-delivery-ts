@@ -2,7 +2,18 @@ import { PaymentContainer, Content, Aside, Section, CardSelect, PriceContent } f
 import { Header } from "../../components/Header";
 import Logo from '../../assets/Americano.svg'
 import { Minus, Plus, MapPinLine, CurrencyDollar, Bank, Money, CreditCard, Trash } from '@phosphor-icons/react'
+import { useNavigate } from "react-router-dom";
+
+
 export function Payment() {
+
+    const navigate = useNavigate()
+
+    function handleSucess(){
+        navigate("/order")
+
+    }
+
     return (
         <PaymentContainer>
             <Header />
@@ -69,10 +80,10 @@ export function Payment() {
                                 <div className="details">
                                     <h2>Expresso Tradicional</h2>
                                         <div>
-                                        <div>
-                                            <button name='buttonminus' type="button"><Minus size={14} /></button>
-                                            <input type="text" readOnly disabled />
-                                            <button name='buttonmax' type="button"><Plus size={14} /></button>
+                                        <div className="box-buttonmaxminus">
+                                            <button name='buttonminus' type="button"><Minus weight="bold" size={14} /></button>
+                                            <input type="text" readOnly disabled value={1}/>
+                                            <button name='buttonmax' type="button"><Plus weight="bold" size={14} /></button>
                                         </div>
                                         <button><Trash size={16} /> Remover</button>
 
@@ -85,10 +96,11 @@ export function Payment() {
                             </div>
                             <span>R$9,90</span>
                         </CardSelect>
+                        
 
                         <PriceContent>
                             <div>
-                                <span>total de itens</span>
+                                <span>Total de itens</span>
                                 <span>R$29,90</span>
                             </div>
                             <div>
@@ -100,7 +112,7 @@ export function Payment() {
                                 <span>R$39,90</span>
                             </div>
 
-                            <button type="button">Confirmar pedido</button>
+                            <button  onClick={handleSucess} type="button">Confirmar pedido</button>
                         </PriceContent>
 
 

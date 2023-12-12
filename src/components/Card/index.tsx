@@ -67,9 +67,9 @@ export function Card({datainfo, onChangeValue}: PropsCard){
             <p>R$<strong>{numeroFormatado}</strong> </p>
             <Action>
                 <div>
-                    <button name='buttonminus' onClick={decrementValue} type="button"><Minus size={14} /></button>
+                    <button name='buttonminus' onClick={decrementValue} type="button"><Minus weight='bold' size={14} /></button>
                     <input type="text" readOnly disabled value={dataValue} />
-                    <button name='buttonmax' onClick={incrementValue} type="button"><Plus size={14} /></button>
+                    <button name='buttonmax' onClick={incrementValue} type="button"><Plus weight='bold' size={14} /></button>
                 </div>
                 <button onClick={handleCart}><ShoppingCart size={22} weight="fill" /></button>
             </Action>

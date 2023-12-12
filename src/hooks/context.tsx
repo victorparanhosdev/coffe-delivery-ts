@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { PropsDataInfo } from "../components/Card";
 
 
@@ -8,11 +8,15 @@ selectData: PropsDataInfo[] | [],
 setSelectDataFun: (value: PropsDataInfo[])=> void
 }
 
+interface PropsContextCart {
+    children: ReactNode
+}
+
 const CartContext = createContext({} as PropsCardContext)
 
 
 
-function CartProvider({children}:any){
+function CartProvider({children}: PropsContextCart){
 
     const [dataLocalStorage, setdataLocalStorage] = useState<PropsDataInfo[]>([])
     const [selectData, setselectData] = useState<PropsDataInfo[] | []>([])
