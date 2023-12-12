@@ -1,12 +1,12 @@
-import { PaymentContainer, Content, Aside, Section, CardSelect, PriceContent } from "./style";
+import { PaymentContainer, Content, Aside, Section, PriceContent } from "./style";
 import { Header } from "../../components/Header";
-import Logo from '../../assets/Americano.svg'
-import { Minus, Plus, MapPinLine, CurrencyDollar, Bank, Money, CreditCard, Trash } from '@phosphor-icons/react'
+import {MapPinLine, CurrencyDollar, Bank, Money, CreditCard} from '@phosphor-icons/react'
 import { useNavigate } from "react-router-dom";
-
+import {CardSelected} from '../../components/CardSelected'
+import { useCart } from "../../hooks/context";
 
 export function Payment() {
-
+    const {dataLocalStorage} = useCart()
     const navigate = useNavigate()
 
     function handleSucess(){
@@ -74,28 +74,10 @@ export function Payment() {
                 <Aside>
                     <h1>Cafés selecionados</h1>
                     <div>
-                        <CardSelect>
-                            <div>
-                                <img src={Logo} alt="" />
-                                <div className="details">
-                                    <h2>Expresso Tradicional</h2>
-                                        <div>
-                                        <div className="box-buttonmaxminus">
-                                            <button name='buttonminus' type="button"><Minus weight="bold" size={14} /></button>
-                                            <input type="text" readOnly disabled value={1}/>
-                                            <button name='buttonmax' type="button"><Plus weight="bold" size={14} /></button>
-                                        </div>
-                                        <button><Trash size={16} /> Remover</button>
-
-
-                                        </div>
-
-                       
-                          
-                                </div>
-                            </div>
-                            <span>R$9,90</span>
-                        </CardSelect>
+                        {dataLocalStorage && dataLocalStorage.map(coffe => {
+                            return <CardSelected key={String(coffe.id)} coffe={coffe}/>
+                            
+                        })}
                         
 
                         <PriceContent>
@@ -112,7 +94,7 @@ export function Payment() {
                                 <span>R$39,90</span>
                             </div>
 
-                            <button  onClick={handleSucess} type="button">Confirmar pedido</button>
+                            <button onClick={handleSucess} type="button">Confirmar pedido</button>
                         </PriceContent>
 
 

@@ -5,7 +5,9 @@ import { PropsDataInfo } from "../components/Card";
 interface PropsCardContext {
 dataLocalStorage: PropsDataInfo[],
 selectData: PropsDataInfo[] | [],
-setSelectDataFun: (value: PropsDataInfo[])=> void
+setSelectDataFun: (value: PropsDataInfo[])=> void,
+setdataLocalStorage: (v: PropsDataInfo[])=> void,
+
 }
 
 interface PropsContextCart {
@@ -24,6 +26,7 @@ function CartProvider({children}: PropsContextCart){
     function setSelectDataFun(value: PropsDataInfo[]){
         setselectData(value)
     }
+
     
     useEffect(() => {
         const LocalStorageCoffe = localStorage.getItem('@coffe-select_1.0.0:') || '[]';
@@ -38,7 +41,7 @@ function CartProvider({children}: PropsContextCart){
       }, [selectData])
 
     return(
-        <CartContext.Provider value={{dataLocalStorage, selectData, setSelectDataFun}}>
+        <CartContext.Provider value={{dataLocalStorage, selectData, setSelectDataFun, setdataLocalStorage}}>
             {children}
         </CartContext.Provider>
     )
