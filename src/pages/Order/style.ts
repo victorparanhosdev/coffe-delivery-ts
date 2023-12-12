@@ -44,17 +44,56 @@ export const Content = styled.main`
 `
 
 export const Details = styled.div`
-    border-radius: 6px 36px 6px 36px;
-    border: 1px solid rgba(219, 172, 44, 1);
+    border-radius: 6px 36px;
+    border: 1px solid red;
     padding: 4rem;
     margin-top: 4rem;
     display: grid;
     gap: 3.2rem;
     max-width: 52.6rem;
+
+
+
+   
     > div {
         display: flex;
+        align-items: center;
         gap: 1.2rem;
+
+        span {
+            min-width: 3.2rem;
+            height: 3.2rem;
+            padding: 0.8rem;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            color: ${({theme})=> theme.white}
+        }
+        p {
+            color: ${({theme})=> theme["base-text"]};
+            font-size: 1.6rem;
+            line-height: 1.3;
+           
+        }
+
+   
+     
+        
     }
+
+    div:nth-child(1) span{
+            background-color: ${({theme})=> theme.purple};
+        }
+    div:nth-child(2) span{
+            background-color: ${({theme})=> theme.yellow};
+            
+        }
+    div:nth-child(3) span{
+            background-color: ${({theme})=> theme["yellow-dark"]};
+    }
+
+   
+    
 
 
 `
