@@ -45,19 +45,17 @@ export const Content = styled.main`
 
 export const Details = styled.div`
     border-radius: 6px 36px;
-    border: 1px solid;
+    border: 1px solid transparent;
     padding: 4rem;
     margin-top: 4rem;
     display: grid;
     gap: 3.2rem;
     max-width: 52.6rem;
-    
     ${({theme})=> {
         return css`
-        border-image: linear-gradient(to bottom right, ${theme.yellow}, ${theme.purple}) 1;
+        background: linear-gradient(${theme.background}, ${theme.background}) padding-box, linear-gradient(to bottom right, ${theme.yellow}, ${theme.purple});
         `
     }}
-  
     
    
     > div {
@@ -97,7 +95,7 @@ export const Details = styled.div`
             background-color: ${({theme})=> theme["yellow-dark"]};
     }
 
-   
+
     
 
 
