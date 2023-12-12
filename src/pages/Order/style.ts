@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export const OrderContainer = styled.div`
 
@@ -45,15 +45,20 @@ export const Content = styled.main`
 
 export const Details = styled.div`
     border-radius: 6px 36px;
-    border: 1px solid red;
+    border: 1px solid;
     padding: 4rem;
     margin-top: 4rem;
     display: grid;
     gap: 3.2rem;
     max-width: 52.6rem;
-
-
-
+    
+    ${({theme})=> {
+        return css`
+        border-image: linear-gradient(to bottom right, ${theme.yellow}, ${theme.purple}) 1;
+        `
+    }}
+  
+    
    
     > div {
         display: flex;
