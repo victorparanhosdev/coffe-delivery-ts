@@ -11,6 +11,7 @@ import Cubano from '../../assets/Cubano.svg'
 import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 import Havaiano from '../../assets/Havaiano.svg'
 import {useCart} from '../../hooks/context'
+import { useEffect } from "react";
 
 
 const DataCoffeeInfo = [
@@ -105,6 +106,10 @@ export function Home() {
 
 
   }
+  
+  useEffect(()=> {
+
+  })
 
 
 

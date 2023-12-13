@@ -5,8 +5,10 @@ import { PropsDataInfo } from "../components/Card";
 interface PropsCardContext {
 dataLocalStorage: PropsDataInfo[],
 selectData: PropsDataInfo[] | [],
+isActive: boolean,
 setSelectDataFun: (value: PropsDataInfo[])=> void,
 setdataLocalStorage: (v: PropsDataInfo[])=> void,
+setisActive: React.Dispatch<React.SetStateAction<boolean>>
 
 }
 
@@ -22,6 +24,7 @@ function CartProvider({children}: PropsContextCart){
 
     const [dataLocalStorage, setdataLocalStorage] = useState<PropsDataInfo[]>([])
     const [selectData, setselectData] = useState<PropsDataInfo[] | []>([])
+    const [isActive, setisActive] = useState<boolean>(false);
 
     function setSelectDataFun(value: PropsDataInfo[]){
         setselectData(value)
@@ -41,7 +44,7 @@ function CartProvider({children}: PropsContextCart){
       }, [selectData])
 
     return(
-        <CartContext.Provider value={{dataLocalStorage, selectData, setSelectDataFun, setdataLocalStorage}}>
+        <CartContext.Provider value={{dataLocalStorage, selectData, setSelectDataFun, setdataLocalStorage, setisActive, isActive}}>
             {children}
         </CartContext.Provider>
     )

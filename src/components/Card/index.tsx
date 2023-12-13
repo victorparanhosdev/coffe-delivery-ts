@@ -1,7 +1,7 @@
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import {CardContainer, Buy, Action} from './style'
-
-import { ShoppingCart, Minus, Plus } from "@phosphor-icons/react";
+import { useCart } from '../../hooks/context';
+import { ShoppingCart, Minus, Plus, Check } from "@phosphor-icons/react";
 
 
 export interface PropsDataInfo {
@@ -23,15 +23,14 @@ export function Card({datainfo, onChangeValue}: PropsCard){
 
     const [dataValue, setdataValue] = useState(1);
 
+    const {setisActive, isActive} = useCart()
 
     function handleCart(){
         onChangeValue(dataValue, datainfo)
         setdataValue(1)
+        setisActive(true)
 
-     
-
-
-
+        
     }
     
       const decrementValue = () => {
@@ -52,7 +51,20 @@ export function Card({datainfo, onChangeValue}: PropsCard){
       const formatoPadrao = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       const numeroFormatado = formatoPadrao.replace('R$', '').trim();
 
+      useEffect(()=>{
 
+        let timerout: number
+        if(isActive){
+            timerout = setTimeout(()=>{
+                setisActive(false)
+            }, 400)
+        }
+
+        return ()=> {
+            clearInterval(timerout)
+        }
+
+      },[isActive])
     return(
         <CardContainer>
         <img src={(datainfo.urlimg)} alt={datainfo.title} />
@@ -71,7 +83,8 @@ export function Card({datainfo, onChangeValue}: PropsCard){
                     <input type="text" readOnly disabled value={dataValue} />
                     <button name='buttonmax' onClick={incrementValue} type="button"><Plus weight='bold' size={14} /></button>
                 </div>
-                <button onClick={handleCart}><ShoppingCart size={22} weight="fill" /></button>
+
+                <button disabled={isActive} onClick={handleCart}>{isActive ? <Check weight="bold"size={22} />:<ShoppingCart size={22} weight="fill" />}</button>
             </Action>
         </Buy>
     </CardContainer>

@@ -125,9 +125,15 @@ export const Action = styled.div`
     min-width: 2.2rem;
     transition: background 0.2s;
     margin-left: 0.8rem;
-    &:hover {
+
+    &:not(:disabled):hover {
       background: ${({ theme }) => theme["purple"]};
     }
+
+    &:disabled{
+            cursor: auto;
+            opacity: 0.5;
+        }
 
 
   }
