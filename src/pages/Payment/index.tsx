@@ -2,21 +2,22 @@ import { PaymentContainer, Content, Aside, Section, PriceContent } from "./style
 import { Header } from "../../components/Header";
 import {MapPinLine, CurrencyDollar, Bank, Money, CreditCard} from '@phosphor-icons/react'
 import { useNavigate } from "react-router-dom";
-import {CardSelected} from '../../components/CardSelected'
-import { useCart } from "../../hooks/context";
+import { CardSelected } from '../../components/CardSelected'
+
 
 
 export function Payment() {
-    const {dataLocalStorage} = useCart()
     const navigate = useNavigate()
+
+
 
     function handleSucess(){
         navigate("/order")
 
     }
 
+   
  
-
     return (
         <PaymentContainer>
             <Header />
@@ -77,11 +78,7 @@ export function Payment() {
                 <Aside>
                     <h1>Cafés selecionados</h1>
                     <div>
-                        {dataLocalStorage && dataLocalStorage.map(coffe => {
-                            return <CardSelected key={String(coffe.id)} coffe={coffe}/>
-                            
-                        })}
-                        
+                    <CardSelected />
 
                         <PriceContent>
                             <div>

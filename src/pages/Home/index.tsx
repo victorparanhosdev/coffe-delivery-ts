@@ -11,9 +11,6 @@ import Cubano from '../../assets/Cubano.svg'
 import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 import Havaiano from '../../assets/Havaiano.svg'
 
-
-
-
 const DataCoffeeInfo = [
   {
     id:String(1),

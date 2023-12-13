@@ -1,7 +1,7 @@
-import {CardContainer, Buy} from './style'
-import { ActionButton } from '../ActionButton';
-
-
+import {CardContainer, Buy, Action} from './style'
+import {useEffect, useState} from 'react'
+import { Check, Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
+import { useTheme } from 'styled-components';
 export interface PropsDataInfo {
     id: string,
     urlimg: string,
@@ -18,12 +18,51 @@ export interface PropsCard {
 }
 
 export function Card({datainfo}: PropsCard){
-
+    const theme = useTheme()
     const numero = datainfo.price;
-      const formatoPadrao = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-      const numeroFormatado = formatoPadrao.replace('R$', '').trim();
+    const formatoPadrao = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const numeroFormatado = formatoPadrao.replace('R$', '').trim();
+
+  
+    const [isActive, setisActive] = useState<boolean>(false);
+    const [dataValue, setdataValue] = useState(1);
 
 
+
+
+      const decrementValue = () => {
+        const min = Math.max(dataValue - 1, 1)
+        setdataValue(min);
+
+      };
+    
+      const incrementValue = () => {
+        const max = dataValue + 1
+        setdataValue(max);
+     
+      };
+
+
+    
+
+
+
+      useEffect(()=>{
+ 
+        let timerout: number
+        if(isActive){
+            timerout = setTimeout(()=>{
+
+                setisActive(false)
+       
+            }, 500)
+        }
+
+        return ()=> {
+            clearInterval(timerout)
+        }
+
+      },[isActive])
 
 
     return(
@@ -38,7 +77,14 @@ export function Card({datainfo}: PropsCard){
         <label>{datainfo.description}</label>
         <Buy>
             <p>R$<strong>{numeroFormatado}</strong> </p>
-            <ActionButton ActionInfo={datainfo}/>
+            <Action>
+                <div>
+                    <button name='buttonminus' onClick={decrementValue} type="button"><Minus weight='bold' size={14} /></button>
+                    <input type="text" readOnly disabled value={dataValue} />
+                    <button name='buttonmax' onClick={incrementValue} type="button"><Plus weight='bold' size={14} /></button>
+                </div>
+                <button style={isActive ? {background: theme['yellow-dark']}: {}} disabled={isActive}>{isActive ? <Check weight="bold"size={22} />:<ShoppingCart size={22} weight="fill" />}</button>
+            </Action>
         </Buy>
     </CardContainer>
     )
