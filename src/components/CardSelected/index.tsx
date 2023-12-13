@@ -1,17 +1,18 @@
 
 import { Minus, Plus, Trash } from '@phosphor-icons/react'
 import { CardSelect } from './style'
-import Coffe from '../../assets/Americano.svg'
 
 import { useState } from 'react'
+import Coffe from '../../assets/Americano.svg'
+
 
 
 export function CardSelected(){
-
+ 
    
-   const [dataValue, setdataValue] = useState(1);
+   const [dataValue, setdataValue] = useState<number>(1);
 
-  
+    
       const decrementValue = () => {
         const min = Math.max(dataValue - 1, 1)
         setdataValue(min);
@@ -30,7 +31,7 @@ export function CardSelected(){
         <div>
             <img src={Coffe} alt="" />
             <div className="details">
-                <h2>Americano</h2>
+                <h2>Americcano</h2>
                     <div>
                     <div className="box-buttonmaxminus">
                         <button onClick={decrementValue} name='buttonminus' type="button"><Minus weight="bold" size={14} /></button>
@@ -41,7 +42,7 @@ export function CardSelected(){
                     </div>
             </div>
         </div>
-        <span>R$9,90</span>
+        <span>9,99</span>
     </CardSelect>
        
     )

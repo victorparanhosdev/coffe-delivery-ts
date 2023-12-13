@@ -7,7 +7,7 @@ import { useCart } from '../../hooks/context';
 
 export function Header(){
 
-    const {dataLocalStorage} = useCart()
+    const {selectedCard} = useCart()
 
     return(
         <HeaderContainer>
@@ -16,7 +16,7 @@ export function Header(){
 
                 <Menu>
                     <div><MapPin size={22} weight="fill" /><span>Porto Alegre, RS</span></div>
-                    <NavLink to="/payment"><ShoppingCart size={22} weight="fill"/><span>{dataLocalStorage && dataLocalStorage.length ? dataLocalStorage.length : 0}</span></NavLink>
+                    <NavLink to="/payment"><ShoppingCart size={22} weight="fill"/><span>{selectedCard && selectedCard.cartItems.length ? selectedCard.cartItems.length : 0}</span></NavLink>
                 </Menu>
                 
             </nav>

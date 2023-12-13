@@ -1,27 +1,24 @@
 import { PaymentContainer, Content, Aside, Section, PriceContent } from "./style";
 import { Header } from "../../components/Header";
-import {MapPinLine, CurrencyDollar, Bank, Money, CreditCard} from '@phosphor-icons/react'
+import { MapPinLine, CurrencyDollar, Bank, Money, CreditCard } from '@phosphor-icons/react'
 import { useNavigate } from "react-router-dom";
-import { CardSelected } from '../../components/CardSelected'
-import { useCart } from "../../hooks/context";
-import { useEffect } from "react";
+
+import { CardSelected } from "../../components/CardSelected";
 
 
 export function Payment() {
     const navigate = useNavigate()
-    const {selectedCard} = useCart()
 
 
-    function handleSucess(){
+
+
+    function handleSucess() {
         navigate("/order")
 
     }
 
-    useEffect(()=> {
-        console.log(selectedCard)
 
-    },[selectedCard])
- 
+
     return (
         <PaymentContainer>
             <Header />
@@ -82,9 +79,9 @@ export function Payment() {
                 <Aside>
                     <h1>Cafés selecionados</h1>
                     <div>
-                    <CardSelected />
-                        
-                    
+
+                        <CardSelected />
+
 
                         <PriceContent>
                             <div>

@@ -33,8 +33,7 @@ interface PropsActionReducer {
 
 interface PropsDataContext {
     DataCoffeeInfo: PropsDataInfo[],
-    dispatch: React.Dispatch<React.SetStateAction<any>>,
-    selectedCard: PropsState
+    dispatch: React.Dispatch<PropsActionReducer>;
 }
 
 const CartContext = createContext({} as PropsDataContext)
@@ -108,7 +107,7 @@ export interface PropsState {
 function CartProvider({children}: PropsContextCart){
 
 
-  const [selectedCard, dispatch] = useReducer((state: PropsState, action: PropsActionReducer) => {
+  const [, dispatch] = useReducer((state: PropsState, action: PropsActionReducer) => {
     if (action.type === 'ADD_CART') {
       const existingItem = state.cartItems.find(item => item.id === action.payload.cartItems.id);
   
@@ -131,7 +130,7 @@ function CartProvider({children}: PropsContextCart){
 
 
     return(
-        <CartContext.Provider value={{DataCoffeeInfo, dispatch, selectedCard}}>
+        <CartContext.Provider value={{DataCoffeeInfo, dispatch}}>
             {children}
         </CartContext.Provider>
     )
