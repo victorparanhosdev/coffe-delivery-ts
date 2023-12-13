@@ -2,32 +2,33 @@ import {CardContainer, Buy, Action} from './style'
 import {useEffect, useState} from 'react'
 import { Check, Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import { useTheme } from 'styled-components';
-export interface PropsDataInfo {
-    id: string,
-    urlimg: string,
-    tag: string[],
-    title: string,
-    description: string,
-    price: number,
-    value?: number
-}
-
+import { PropsDataInfo } from '../../hooks/context';
+import { useCart } from '../../hooks/context';
 export interface PropsCard {
     datainfo: PropsDataInfo,
 
 }
 
 export function Card({datainfo}: PropsCard){
+    const { dispatch } = useCart()
     const theme = useTheme()
     const numero = datainfo.price;
     const formatoPadrao = numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     const numeroFormatado = formatoPadrao.replace('R$', '').trim();
+    
+      const [isActive, setisActive] = useState<boolean>(false);
+      const [dataValue, setdataValue] = useState(1);
+    
 
-  
-    const [isActive, setisActive] = useState<boolean>(false);
-    const [dataValue, setdataValue] = useState(1);
+      function handleSelectCard() {
 
-
+        dispatch({
+          type: 'ADD_CART',
+          payload: {
+            datainfo,
+          },
+        });
+      }
 
 
       const decrementValue = () => {
@@ -41,10 +42,6 @@ export function Card({datainfo}: PropsCard){
         setdataValue(max);
      
       };
-
-
-    
-
 
 
       useEffect(()=>{
@@ -83,7 +80,7 @@ export function Card({datainfo}: PropsCard){
                     <input type="text" readOnly disabled value={dataValue} />
                     <button name='buttonmax' onClick={incrementValue} type="button"><Plus weight='bold' size={14} /></button>
                 </div>
-                <button style={isActive ? {background: theme['yellow-dark']}: {}} disabled={isActive}>{isActive ? <Check weight="bold"size={22} />:<ShoppingCart size={22} weight="fill" />}</button>
+                <button onClick={handleSelectCard} style={isActive ? {background: theme['yellow-dark']}: {}} disabled={isActive}>{isActive ? <Check weight="bold"size={22} />:<ShoppingCart size={22} weight="fill" />}</button>
             </Action>
         </Buy>
     </CardContainer>
