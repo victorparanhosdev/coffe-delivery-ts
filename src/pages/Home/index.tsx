@@ -2,7 +2,7 @@ import { SectionOne, SectionTwo } from "./style";
 import { Header } from "../../components/Header";
 import LogoCoffe from '../../assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee } from '@phosphor-icons/react'
-import { Card, PropsDataInfo } from "../../components/Card";
+import { Card } from "../../components/Card";
 import CafeGelado from '../../assets/Café Gelado.svg'
 import Americano from '../../assets/Americano.svg'
 import CafeComLeite from '../../assets/Café com Leite.svg'
@@ -10,8 +10,8 @@ import Capuccino from '../../assets/Capuccino.svg'
 import Cubano from '../../assets/Cubano.svg'
 import ExpressoCremoso from '../../assets/Expresso Cremoso.svg'
 import Havaiano from '../../assets/Havaiano.svg'
-import {useCart} from '../../hooks/context'
-import { useEffect } from "react";
+
+
 
 
 const DataCoffeeInfo = [
@@ -75,44 +75,6 @@ const DataCoffeeInfo = [
 
 
 export function Home() {
-  const {dataLocalStorage, setSelectDataFun, selectData} = useCart()
-
-
-
-  function getValueCard(value: number, data: PropsDataInfo) {
- 
-    const SelectCoffe = {
-      ...data,
-      value
-    }
-    const existData = dataLocalStorage.find(response => response.id === data.id)
-    if (existData) {
-      const newUpdate = dataLocalStorage.map(dataCoffe => {
-        if (dataCoffe.id === data.id) {
-          return { ...dataCoffe, value: value + (dataCoffe.value || value) }
-        }
-        return dataCoffe
-      })
-      setSelectDataFun(newUpdate)
-      localStorage.setItem("@coffe-select_1.0.0:", JSON.stringify(newUpdate))
-
-
-    } else {
-      const newArrayCoffe = [...selectData, SelectCoffe]
-      setSelectDataFun(newArrayCoffe)
-      localStorage.setItem("@coffe-select_1.0.0:", JSON.stringify(newArrayCoffe))
-
-    }
-
-
-  }
-  
-  useEffect(()=> {
-
-  })
-
-
-
 
   return (
     <div>
@@ -143,7 +105,7 @@ export function Home() {
           <div>
             {DataCoffeeInfo.length > 0 && DataCoffeeInfo.map(data => {
               return (
-                <Card onChangeValue={getValueCard} key={String(data.id)} datainfo={data} />
+                <Card key={String(data.id)} datainfo={data} />
               )
             })}
 

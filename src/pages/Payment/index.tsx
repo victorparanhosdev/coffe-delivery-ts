@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {CardSelected} from '../../components/CardSelected'
 import { useCart } from "../../hooks/context";
 
+
 export function Payment() {
     const {dataLocalStorage} = useCart()
     const navigate = useNavigate()
@@ -13,6 +14,8 @@ export function Payment() {
         navigate("/order")
 
     }
+
+ 
 
     return (
         <PaymentContainer>
