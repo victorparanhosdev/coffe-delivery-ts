@@ -6,7 +6,6 @@ import Coffe from '../../assets/Americano.svg'
 import { useState } from 'react'
 
 
-
 export function CardSelected(){
 
    

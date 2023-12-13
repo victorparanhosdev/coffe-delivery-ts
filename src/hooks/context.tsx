@@ -6,7 +6,7 @@ import Capuccino from '../assets/Capuccino.svg'
 import Cubano from '../assets/Cubano.svg'
 import ExpressoCremoso from '../assets/Expresso Cremoso.svg'
 import Havaiano from '../assets/Havaiano.svg'
-
+//import { produce } from "immer";
 
 interface PropsContextCart {
     children: ReactNode
@@ -19,17 +19,27 @@ export interface PropsDataInfo {
     title: string,
     description: string,
     price: number,
-    value?: number
+    quantity?: number
+}
+interface PropsActionReducer {
+  type: string,
+  payload: {
+    cartItems: {
+      id: string,
+      quantity: number
+    }
+  }
 }
 
 interface PropsDataContext {
     DataCoffeeInfo: PropsDataInfo[],
-    dispatch: React.Dispatch<React.SetStateAction<any>>
+    dispatch: React.Dispatch<React.SetStateAction<any>>,
+    selectedCard: PropsState
 }
 
 const CartContext = createContext({} as PropsDataContext)
 
-const DataCoffeeInfo = [
+export const DataCoffeeInfo = [
     {
       id:String(1),
       urlimg: CafeGelado,
@@ -88,26 +98,40 @@ const DataCoffeeInfo = [
     }
   ]
 
+export interface PropsState {
+  cartItems: {
+    id: string,
+    quantity: number
+  }[] 
+}
 
 function CartProvider({children}: PropsContextCart){
 
-  const [selectedCard, dispatch] = useReducer((state: any, action: any) => {
- 
-    if (action.type === 'ADD_CART') {
 
+  const [selectedCard, dispatch] = useReducer((state: PropsState, action: PropsActionReducer) => {
+    if (action.type === 'ADD_CART') {
+      const existingItem = state.cartItems.find(item => item.id === action.payload.cartItems.id);
+  
+      if (existingItem) {
+        // Se o item já existe no carrinho, atualize a quantidade
+        return {
+          cartItems: state.cartItems.map(item => item.id === action.payload.cartItems.id ? { ...item, quantity: item.quantity + action.payload.cartItems.quantity } : item),
+        };
+      }
+  
+      // Se o item não existe no carrinho, adicione-o
       return {
-        cartItems: [...state.cartItems, action.payload.datainfo],
+        cartItems: [...state.cartItems, action.payload.cartItems],
       };
     }
-
+  
     return state;
   }, { cartItems: [] });
 
-  
-  console.log(selectedCard)
+
 
     return(
-        <CartContext.Provider value={{DataCoffeeInfo, dispatch}}>
+        <CartContext.Provider value={{DataCoffeeInfo, dispatch, selectedCard}}>
             {children}
         </CartContext.Provider>
     )

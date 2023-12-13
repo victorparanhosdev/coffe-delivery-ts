@@ -21,13 +21,15 @@ export function Card({datainfo}: PropsCard){
     
 
       function handleSelectCard() {
-
+        setisActive(true)
+        setdataValue(1)
         dispatch({
           type: 'ADD_CART',
           payload: {
-            datainfo,
+            cartItems: {id: datainfo.id, quantity: dataValue}
           },
         });
+   
       }
 
 
