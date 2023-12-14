@@ -9,7 +9,7 @@ import { useCart } from "../../hooks/context";
 
 
 export function Home() {
-  const {DataCoffeeInfo} = useCart()
+  const {coffees} = useCart()
 
   return (
     <div>
@@ -38,7 +38,7 @@ export function Home() {
           <h1>Nossos Cafés</h1>
 
           <div>
-            {DataCoffeeInfo.length > 0 && DataCoffeeInfo.map(data => {
+            {coffees.length > 0 && coffees.map(data => {
               return (
                 <Card key={String(data.id)} datainfo={data} />
               )

@@ -9,12 +9,26 @@ import { useCart } from "../../hooks/context";
 export function Payment() {
     const navigate = useNavigate()
     const {items} = useCart()
+
+
     function handleSucess() {
         navigate("/order")
 
     }
 
+    const prices = items.map(item => item.price);
+    const quantities = items.map(item => item.quantity);
+    const totalValue = prices.reduce((accumulator, price, index) => {
+        const itemTotal = price * quantities[index];
+        return accumulator + itemTotal;
+    }, 0);
+    
+    const Delivery = 3.9
+    const TotalValueWithDelivery = (totalValue + Delivery).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    
  
+
+
 
     return (
         <PaymentContainer>
@@ -85,15 +99,15 @@ export function Payment() {
                         <PriceContent>
                             <div>
                                 <span>Total de itens</span>
-                                <span>R$3,90</span>
+                                <span>{totalValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
                             </div>
                             <div>
                                 <span>Entrega</span>
-                                <span>R$3,90</span>
+                                <span>{Delivery.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
                             </div>
                             <div>
                                 <span>Total</span>
-                                <span>R$39,90</span>
+                                <span>{TotalValueWithDelivery}</span>
                             </div>
 
                             <button onClick={handleSucess} type="button">Confirmar pedido</button>
