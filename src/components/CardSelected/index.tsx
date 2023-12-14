@@ -3,27 +3,52 @@ import { Minus, Plus, Trash } from '@phosphor-icons/react'
 import { CardSelect } from './style'
 import { PropsDataInfo2 } from '../../hooks/context'
 import { useState } from 'react'
-
+import { useCart } from '../../hooks/context'
 
 interface PropsCoffeSelected {
-  coffeSelecteds: PropsDataInfo2
+  coffeSelecteds: PropsDataInfo2,
 }
 
 export function CardSelected({coffeSelecteds}: PropsCoffeSelected){
 
+  const {dispatch} = useCart()
    
-   const [dataValue, setdataValue] = useState<number>(coffeSelecteds.quantity);
+  const [dataValue, setdataValue] = useState<number>(coffeSelecteds.quantity);
 
-    
-      const decrementValue = () => {
-        const min = Math.max(dataValue - 1, 1)
+
+
+  function removeItems(){
+    dispatch({
+      type: 'REMOVE_ITEM',
+      payloads: {
+        items: {...coffeSelecteds}
+      }
+    })
+
+  }
+
+
+  const decrementValue = () => {
+      const min = Math.max(dataValue - 1, 1)
         setdataValue(min);
- 
+        dispatch({
+          type: 'ADD_DECREMENT',
+          payloads: {
+            items: {...coffeSelecteds, quantity: min}
+          }
+        })   
+  
       };
     
-      const incrementValue = () => {
-        const max = dataValue + 1
-        setdataValue(max);     
+  const incrementValue = () => {
+      const max = dataValue + 1
+        setdataValue(max);  
+        dispatch({
+          type: 'ADD_INCREMENT',
+          payloads: {
+            items: {...coffeSelecteds, quantity: max}
+          }
+        })   
       };
 
     
@@ -40,11 +65,11 @@ export function CardSelected({coffeSelecteds}: PropsCoffeSelected){
                         <input type="text" readOnly disabled value={dataValue}/>
                         <button onClick={incrementValue} name='buttonmax' type="button"><Plus weight="bold" size={14} /></button>
                     </div>
-                    <button><Trash size={16} />Remover</button>
+                    <button onClick={removeItems}><Trash size={16} />Remover</button>
                     </div>
             </div>
         </div>
-        <span>{(coffeSelecteds.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+        <span>{(coffeSelecteds.price * dataValue).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
     </CardSelect>
        
     )

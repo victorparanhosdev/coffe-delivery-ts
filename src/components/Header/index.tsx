@@ -7,7 +7,7 @@ import { useCart } from '../../hooks/context';
 
 export function Header(){
 
-    const {selectedCard} = useCart()
+    const {items} = useCart()
 
     return(
         <HeaderContainer>
@@ -16,7 +16,7 @@ export function Header(){
 
                 <Menu>
                     <div><MapPin size={22} weight="fill" /><span>Porto Alegre, RS</span></div>
-                    <NavLink to="/payment"><ShoppingCart size={22} weight="fill"/><span>{selectedCard && selectedCard.cartItems.length ? selectedCard.cartItems.length : 0}</span></NavLink>
+                    <NavLink to="/payment"><ShoppingCart size={22} weight="fill"/><span>{items && items.length ? items.length : 0}</span></NavLink>
                 </Menu>
                 
             </nav>

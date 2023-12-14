@@ -8,16 +8,13 @@ import { useCart } from "../../hooks/context";
 
 export function Payment() {
     const navigate = useNavigate()
-
     const {items} = useCart()
-    console.log(items)
-
     function handleSucess() {
         navigate("/order")
 
     }
 
-
+ 
 
     return (
         <PaymentContainer>
@@ -88,7 +85,7 @@ export function Payment() {
                         <PriceContent>
                             <div>
                                 <span>Total de itens</span>
-                                <span>R$29,90</span>
+                                <span>R$3,90</span>
                             </div>
                             <div>
                                 <span>Entrega</span>

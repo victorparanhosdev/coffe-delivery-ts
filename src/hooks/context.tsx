@@ -120,7 +120,7 @@ interface PropsReducerCart {
 function CartProvider({ children }: PropsContextCart) {
 
 
-  const [ExemploDispatch, dispatch] = useReducer((state: PropsReducerCart, action: PropsActionReducer) => {
+  const [CartDispatch, dispatch] = useReducer((state: PropsReducerCart, action: PropsActionReducer) => {
 
     if (action.type === 'ADD_CART') {
       const verify = state.payloads.items.findIndex(dataDispatch => dataDispatch.id === action.payloads.items.id);
@@ -146,6 +146,52 @@ function CartProvider({ children }: PropsContextCart) {
         };
       }
     }
+    if(action.type === 'ADD_INCREMENT'){
+      const verify = state.payloads.items.findIndex(dataDispatch => dataDispatch.id === action.payloads.items.id);
+
+      if (verify > -1) {
+        // Se o item já existe no carrinho, atualize a quantidade
+        const newArray = [...state.payloads.items];
+        newArray[verify].quantity = action.payloads.items.quantity;
+
+        return {
+          ...state,
+          payloads: {
+            items: newArray,
+          },
+        }
+      }
+    }
+    if(action.type === 'ADD_DECREMENT'){
+      const verify = state.payloads.items.findIndex(dataDispatch => dataDispatch.id === action.payloads.items.id);
+
+      if (verify > -1) {
+        // Se o item já existe no carrinho, atualize a quantidade
+        const newArray = [...state.payloads.items];
+        newArray[verify].quantity = action.payloads.items.quantity;
+
+        return {
+          ...state,
+          payloads: {
+            items: newArray,
+          },
+        }
+      }
+    }
+    if(action.type === 'REMOVE_ITEM') {
+
+      const newArray = state.payloads.items.filter(dataDispatch => dataDispatch.id !== action.payloads.items.id);
+        return {
+          ...state,
+          payloads: {
+            items: newArray,
+          },
+        }
+      
+      
+    }
+
+
 
 
     return state;
@@ -157,7 +203,7 @@ function CartProvider({ children }: PropsContextCart) {
     }
   });
 
-  const { payloads: { items } } = ExemploDispatch
+  const { payloads: { items } } = CartDispatch
 
 
 
