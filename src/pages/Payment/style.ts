@@ -4,7 +4,7 @@ export const PaymentContainer = styled.div`
 
 
 `
-export const Content = styled.main`
+export const Form = styled.form`
     width: min(112rem, 95%);
     margin: 4rem auto;   
     display: grid;
@@ -57,7 +57,7 @@ export const Section = styled.section`
     }
 }
 
-form {
+.inputForm {
     
     input {
         font-size: 1.4rem;
@@ -78,11 +78,11 @@ form {
         }
 
     }
-    input[name="cep"]{
+    input[id="cep"]{
         width: 20rem;
         margin-bottom: 1.6rem;
     }
-    input[name="rua"]{
+    input[id="rua"]{
         width: 100%;
         margin-bottom: 1.6rem;
     }
@@ -90,16 +90,16 @@ form {
     > div {
         display: flex;
         gap: 1.2rem;
-        input[name="numero"]{
+        input[id="numero"]{
         width: 20rem;
         }
-        input[name="uf"]{
+        input[id="uf"]{
         flex: 1;
         }
-        input[name="cidade"]{
+        input[id="cidade"]{
         flex: 5;
         }
-        input[name="bairro"]{
+        input[id="bairro"]{
         width: 20rem;
         }
     }

@@ -4,6 +4,8 @@ import { Check, Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import { useTheme } from 'styled-components';
 import { PropsDataInfo } from '../../hooks/context';
 import { useCart } from '../../hooks/context';
+import { ActionTypes } from '../../reducers/actions';
+
 export interface PropsCard {
   datainfo: PropsDataInfo,
 
@@ -24,7 +26,7 @@ export function Card({ datainfo }: PropsCard) {
     setisActive(true)
     setdataValue(1)
     dispatch({
-      type: 'ADD_CART',
+      type: ActionTypes.ADD_ITEM,
       payloads: {
         items: { ...datainfo, quantity: dataValue }
       }

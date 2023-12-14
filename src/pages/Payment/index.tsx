@@ -1,20 +1,34 @@
-import { PaymentContainer, Content, Aside, Section, PriceContent } from "./style";
+import { PaymentContainer, Form, Aside, Section, PriceContent } from "./style";
 import { Header } from "../../components/Header";
 import { MapPinLine, CurrencyDollar, Bank, Money, CreditCard } from '@phosphor-icons/react'
-import { useNavigate } from "react-router-dom";
-
+//import { useNavigate } from "react-router-dom";
+//import * as z from 'zod'
 import { CardSelected } from "../../components/CardSelected";
 import { useCart } from "../../hooks/context";
+import { useForm } from 'react-hook-form';
 
 export function Payment() {
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
+    const {register, handleSubmit} = useForm()
     const {items} = useCart()
 
+    function handleSucess(data: any) {
+        //navigate("/order")
+   
+        console.log(data)
+       
 
-    function handleSucess() {
-        navigate("/order")
-
+       
     }
+
+
+
+
+
+
+
+
+
 
     const prices = items.map(item => item.price);
     const quantities = items.map(item => item.quantity);
@@ -33,8 +47,8 @@ export function Payment() {
     return (
         <PaymentContainer>
             <Header />
-            <Content>
-                <Section>
+            <Form onSubmit={handleSubmit(handleSucess)}>
+                <Section >
                     <h1>Complete seu pedido</h1>
 
                     <div>
@@ -46,21 +60,21 @@ export function Payment() {
                             </div>
                         </div>
 
-                        <form action="">
-                            <input type="text" id="cep" name="cep" placeholder="CEP" />
-                            <input type="text" id="rua" name="rua" placeholder="Rua" />
+                        <div className="inputForm">
+                            <input {...register('CEP')} type="text" id="cep" placeholder="CEP" />
+                            <input {...register('Rua')} type="text" id="rua" placeholder="Rua" />
 
                             <div>
-                                <input type="text" id="numero" name="numero" placeholder="Número" />
-                                <input type="text" id="complemento" name="complemento" placeholder="Complemento" />
+                                <input {...register('numero')} type="text" id="numero" placeholder="Número" />
+                                <input {...register('complemento')} type="text" id="complemento" placeholder="Complemento" />
                             </div>
                             <div>
-                                <input type="text" id="bairro" name="bairro" placeholder="Bairro" />
-                                <input type="text" id="cidade" name="cidade" placeholder="Cidade" />
-                                <input type="text" id="uf" name="uf" placeholder="UF" />
+                                <input {...register('bairro')} type="text" id="bairro" placeholder="Bairro" />
+                                <input {...register('cidade')} type="text" id="cidade" placeholder="Cidade" />
+                                <input {...register('UF')} type="text" id="uf" placeholder="UF" />
                             </div>
 
-                        </form>
+                        </div>
 
                     </div>
 
@@ -110,14 +124,14 @@ export function Payment() {
                                 <span>{TotalValueWithDelivery}</span>
                             </div>
 
-                            <button onClick={handleSucess} type="button">Confirmar pedido</button>
+                            <button onClick={handleSucess} type="submit">Confirmar pedido</button>
                         </PriceContent>
 
 
                     </div>
 
                 </Aside>
-            </Content>
+            </Form>
 
         </PaymentContainer>
     )
