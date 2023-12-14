@@ -26,8 +26,8 @@ export function Card({datainfo}: PropsCard){
         dispatch({
           type: 'ADD_CART',
           payload: {
-            cartItems: {...datainfo, quantity: dataValue}
-          },
+            cartItems: [{...datainfo, quantity: dataValue}]
+          }
         });
    
       }

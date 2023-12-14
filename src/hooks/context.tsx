@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useReducer } from "react";
+import React, { ReactNode, createContext, useContext, useReducer } from "react";
 import CafeGelado from '../assets/Café Gelado.svg'
 import Americano from '../assets/Americano.svg'
 import CafeComLeite from '../assets/Café com Leite.svg'
@@ -7,36 +7,6 @@ import Cubano from '../assets/Cubano.svg'
 import ExpressoCremoso from '../assets/Expresso Cremoso.svg'
 import Havaiano from '../assets/Havaiano.svg'
 //import { produce } from "immer";
-
-interface PropsContextCart {
-    children: ReactNode
-}
-
-export interface PropsDataInfo {
-    id: string,
-    urlimg: string,
-    tag: string[],
-    title: string,
-    description: string,
-    price: number,
-    quantity?: number
-}
-interface PropsActionReducer {
-  type: string,
-  payload: {
-    cartItems: {
-      id: string,
-      quantity: number
-    }
-  }
-}
-
-interface PropsDataContext {
-    DataCoffeeInfo: PropsDataInfo[],
-    dispatch: React.Dispatch<PropsActionReducer>;
-}
-
-const CartContext = createContext({} as PropsDataContext)
 
 export const DataCoffeeInfo = [
     {
@@ -94,39 +64,77 @@ export const DataCoffeeInfo = [
       title: 'Title10',
       description: 'Description10',
       price: 29.99,
-    }
-  ]
+    }]
 
-export interface PropsState {
-  cartItems: {
+interface PropsContextCart {
+    children: ReactNode
+}
+
+export interface PropsDataInfo {
     id: string,
-    quantity: number
-  }[] 
+    urlimg: string,
+    tag: string[],
+    title: string,
+    description: string,
+    price: number,
+    quantity?: number
+}
+interface PropsActionReducer {
+  type: string,
+  payload: {
+    cartItems: PropsDataInfo[]
+  }
+}
+
+interface PropsDataContext {
+    DataCoffeeInfo: PropsDataInfo[],
+    dispatch: React.Dispatch<PropsActionReducer>;
+}
+
+
+
+const CartContext = createContext({} as PropsDataContext)
+
+interface PropsReducerCart {
+  type: string,
+  payload: {
+    cartItems: PropsDataInfo[]
+  }
+
 }
 
 function CartProvider({children}: PropsContextCart){
 
 
-  const [, dispatch] = useReducer((state: PropsState, action: PropsActionReducer) => {
-    if (action.type === 'ADD_CART') {
-      const existingItem = state.cartItems.find(item => item.id === action.payload.cartItems.id);
-  
-      if (existingItem) {
-        // Se o item já existe no carrinho, atualize a quantidade
-        return {
-          cartItems: state.cartItems.map(item => item.id === action.payload.cartItems.id ? { ...item, quantity: item.quantity + action.payload.cartItems.quantity } : item),
-        };
-      }
-  
-      // Se o item não existe no carrinho, adicione-o
+  const [ExemploDispatch, dispatch] = useReducer((state: PropsReducerCart, action: PropsActionReducer) => {
+
+
+    if(action.type === 'ADD_CART'){
+
       return {
-        cartItems: [...state.cartItems, action.payload.cartItems],
-      };
+        ...state,
+        payload: {
+          cartItems: [...state.payload.cartItems, action.payload.cartItems[0]]
+        }
+ 
+      }
+    
+
+
     }
+    
+    
   
     return state;
-  }, { cartItems: [] });
 
+    
+  }, {
+      type: '',
+      payload: {
+        cartItems: []
+      }    
+});
+console.log(ExemploDispatch)
 
 
     return(
