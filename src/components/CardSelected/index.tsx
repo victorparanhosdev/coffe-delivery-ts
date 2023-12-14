@@ -1,16 +1,18 @@
 
 import { Minus, Plus, Trash } from '@phosphor-icons/react'
 import { CardSelect } from './style'
-
+import { PropsDataInfo2 } from '../../hooks/context'
 import { useState } from 'react'
-import Coffe from '../../assets/Americano.svg'
 
 
+interface PropsCoffeSelected {
+  coffeSelecteds: PropsDataInfo2
+}
 
-export function CardSelected(){
- 
+export function CardSelected({coffeSelecteds}: PropsCoffeSelected){
+
    
-   const [dataValue, setdataValue] = useState<number>(1);
+   const [dataValue, setdataValue] = useState<number>(coffeSelecteds.quantity);
 
     
       const decrementValue = () => {
@@ -29,9 +31,9 @@ export function CardSelected(){
     return(
         <CardSelect>
         <div>
-            <img src={Coffe} alt="" />
+            <img src={coffeSelecteds.urlimg} alt={coffeSelecteds.title} />
             <div className="details">
-                <h2>Americcano</h2>
+                <h2>{coffeSelecteds.title}</h2>
                     <div>
                     <div className="box-buttonmaxminus">
                         <button onClick={decrementValue} name='buttonminus' type="button"><Minus weight="bold" size={14} /></button>
@@ -42,7 +44,7 @@ export function CardSelected(){
                     </div>
             </div>
         </div>
-        <span>9,99</span>
+        <span>{(coffeSelecteds.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
     </CardSelect>
        
     )

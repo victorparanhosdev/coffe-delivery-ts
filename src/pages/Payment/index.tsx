@@ -4,13 +4,13 @@ import { MapPinLine, CurrencyDollar, Bank, Money, CreditCard } from '@phosphor-i
 import { useNavigate } from "react-router-dom";
 
 import { CardSelected } from "../../components/CardSelected";
-
+import { useCart } from "../../hooks/context";
 
 export function Payment() {
     const navigate = useNavigate()
 
-
-
+    const {items} = useCart()
+    console.log(items)
 
     function handleSucess() {
         navigate("/order")
@@ -79,8 +79,10 @@ export function Payment() {
                 <Aside>
                     <h1>Cafés selecionados</h1>
                     <div>
-
-                        <CardSelected />
+                        {items && items.map(coffeSelected=> {
+                            return <CardSelected key={coffeSelected.id} coffeSelecteds={coffeSelected}/>
+                        })}
+                  
 
 
                         <PriceContent>

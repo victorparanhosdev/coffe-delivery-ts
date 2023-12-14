@@ -71,7 +71,7 @@ interface PropsContextCart {
 }
 
 
-interface PropsDataInfo2 {
+export interface PropsDataInfo2 {
   id: string,
   urlimg: string,
   tag: string[],
@@ -101,6 +101,7 @@ interface PropsActionReducer {
 interface PropsDataContext {
   DataCoffeeInfo: PropsDataInfo[],
   dispatch: React.Dispatch<PropsActionReducer>;
+  items: PropsDataInfo2[]
 }
 
 
@@ -156,14 +157,12 @@ function CartProvider({ children }: PropsContextCart) {
     }
   });
 
-
-  console.log(ExemploDispatch)
   const { payloads: { items } } = ExemploDispatch
-  console.log(items)
+
 
 
   return (
-    <CartContext.Provider value={{ DataCoffeeInfo, dispatch }}>
+    <CartContext.Provider value={{ DataCoffeeInfo, dispatch, items }}>
       {children}
     </CartContext.Provider>
   )
