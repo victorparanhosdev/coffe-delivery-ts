@@ -2,7 +2,7 @@ import { CardContainer, Buy, Action } from './style'
 import { useEffect, useState } from 'react'
 import { Check, Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import { useTheme } from 'styled-components';
-import { PropsDataInfo } from '../../hooks/context';
+import { PropsDataInfo } from '../../reducers/actions';
 import { useCart } from '../../hooks/context';
 import { ActionTypes } from '../../reducers/actions';
 

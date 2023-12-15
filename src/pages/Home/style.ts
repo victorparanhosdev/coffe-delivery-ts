@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Background from "../../assets/Background.svg";
+import Background from "/assets/Background.svg";
 
 export const SectionOne = styled.section`
   position: relative;

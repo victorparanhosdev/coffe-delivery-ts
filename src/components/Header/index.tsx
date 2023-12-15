@@ -1,5 +1,5 @@
 import {HeaderContainer, Menu} from './style'
-import Logo from '../../assets/Logo.svg'
+import Logo from '../../../public/assets/Logo.svg'
 import { ShoppingCart, MapPin } from "@phosphor-icons/react";
 import { NavLink } from 'react-router-dom';
 import { useCart } from '../../hooks/context';
