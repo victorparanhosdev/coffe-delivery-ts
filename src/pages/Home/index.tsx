@@ -1,6 +1,5 @@
 import { SectionOne, SectionTwo } from "./style";
 import { Header } from "../../components/Header";
-import LogoCoffe from '../../../public/assets/Coffe-Logo.svg'
 import { ShoppingCart, Timer, Package, Coffee } from '@phosphor-icons/react'
 import { Card } from "../../components/Card";
 import { useCart } from "../../hooks/context";
@@ -30,7 +29,7 @@ export function Home() {
 
             </div>
 
-            <img src={LogoCoffe} alt="Logo Café" />
+            <img src='/assets/Coffe-Logo.svg' alt="Logo Café" />
           </div>
         </SectionOne>
 

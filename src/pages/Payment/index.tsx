@@ -7,16 +7,20 @@ import { CardSelected } from "../../components/CardSelected";
 import { useCart } from "../../hooks/context";
 import { useForm } from 'react-hook-form';
 
+
+
 export function Payment() {
     //const navigate = useNavigate()
     const {register, handleSubmit} = useForm()
     const {items} = useCart()
 
+
+
+    
     function handleSucess(data: any) {
         //navigate("/order")
    
         console.log(data)
-       
 
        
     }
@@ -124,7 +128,7 @@ export function Payment() {
                                 <span>{TotalValueWithDelivery}</span>
                             </div>
 
-                            <button onClick={handleSucess} type="submit">Confirmar pedido</button>
+                            <button type="submit">Confirmar pedido</button>
                         </PriceContent>
 
 

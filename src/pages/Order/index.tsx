@@ -1,6 +1,6 @@
 import { OrderContainer, Content, Details } from "./style";
 import { Header } from "../../components/Header";
-import CartSucess from "../../../public/assets/Illustration.svg"
+
 import {Timer, MapPinLine, CurrencyDollar} from '@phosphor-icons/react'
 export function Order(){
     return(
@@ -38,7 +38,7 @@ export function Order(){
                     </Details>
 
                 </section>
-                <img src={CartSucess} alt="" />
+                <img src='/assets/Illustration.svg' alt="" />
                
             </Content>
         

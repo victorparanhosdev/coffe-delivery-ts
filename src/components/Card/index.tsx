@@ -2,9 +2,9 @@ import { CardContainer, Buy, Action } from './style'
 import { useEffect, useState } from 'react'
 import { Check, Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import { useTheme } from 'styled-components';
-import { PropsDataInfo } from '../../reducers/actions';
+import { PropsDataInfo, ActionTypes } from '../../reducers/actions';
 import { useCart } from '../../hooks/context';
-import { ActionTypes } from '../../reducers/actions';
+
 
 export interface PropsCard {
   datainfo: PropsDataInfo,
