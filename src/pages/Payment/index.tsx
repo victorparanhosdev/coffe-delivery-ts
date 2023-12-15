@@ -2,7 +2,8 @@ import { PaymentContainer, Form, Aside, Section, PriceContent } from "./style";
 import { Header } from "../../components/Header";
 import { MapPinLine, CurrencyDollar, Bank, Money, CreditCard } from '@phosphor-icons/react'
 //import { useNavigate } from "react-router-dom";
-//import * as z from 'zod'
+import * as zod from 'zod'
+import {zodResolver} from '@hookform/resolvers/zod'
 import { CardSelected } from "../../components/CardSelected";
 import { useCart } from "../../hooks/context";
 import { useForm } from 'react-hook-form';
@@ -11,9 +12,42 @@ import { useForm } from 'react-hook-form';
 
 export function Payment() {
     //const navigate = useNavigate()
-    const {register, handleSubmit} = useForm()
-    const {items} = useCart()
+    
+    interface PropsOrderForm {
+        CEP: string,
+        Rua: string,
+        numero: string, // Pode ser z.number() se você quiser um número.
+        complemento: string,
+        bairro: string,
+        cidade: string,
+        UF: string,
+    }
 
+    const newOrderFormSchema = zod.object({
+        CEP: zod.string(),//.min(2, 'Formato de CEP inválido. Use o formato 12345-678.'),
+        Rua: zod.string(),
+        numero: zod.string(),  // Pode ser zod.number() se você quiser um número.
+        complemento: zod.string(),
+        bairro: zod.string(),
+        cidade: zod.string(),
+        UF: zod.string()//.min(2, 'O campo UF deve ter exatamente 2 caracteres.'),
+      });
+      
+    const {register, handleSubmit, /*watch, /*formState: {errors}*/} = useForm<PropsOrderForm>({
+        resolver: zodResolver(newOrderFormSchema),
+        defaultValues: {
+            bairro: '',
+            CEP: '',
+            cidade: '',
+            complemento: '',
+            numero: '',
+            Rua: '',
+            UF: ''
+        }
+    })
+
+
+    const {items} = useCart()
 
 
     
@@ -22,7 +56,7 @@ export function Payment() {
    
         console.log(data)
 
-       
+        
     }
 
 
