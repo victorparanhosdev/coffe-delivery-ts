@@ -5,8 +5,6 @@ import { Card } from "../../components/Card";
 import { useCart } from "../../hooks/context";
 
 
-
-
 export function Home() {
   const {coffees} = useCart()
 

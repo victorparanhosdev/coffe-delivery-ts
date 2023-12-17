@@ -5,63 +5,65 @@ import { MapPinLine, CurrencyDollar, Bank, Money, CreditCard } from '@phosphor-i
 import * as zod from 'zod'
 import {zodResolver} from '@hookform/resolvers/zod'
 import { CardSelected } from "../../components/CardSelected";
-import { useCart } from "../../hooks/context";
+import { useCart} from "../../hooks/context";
 import { useForm } from 'react-hook-form';
+import { useState } from "react";
+import { ActionTypes } from "../../reducers/actions";
 
 
+const newOrderFormSchema = zod.object({
+    CEP: zod.string(),//.min(2, 'Formato de CEP inválido. Use o formato 12345-678.'),
+    Rua: zod.string(),
+    Numero: zod.string(),  // Pode ser zod.number() se você quiser um número.
+    Complemento: zod.string(),
+    Bairro: zod.string(),
+    Cidade: zod.string(),
+    UF: zod.string(),//.min(2, 'O campo UF deve ter exatamente 2 caracteres.'),
+
+  });
+  
+export type PropsOrderForm = zod.infer<typeof newOrderFormSchema>
 
 export function Payment() {
     //const navigate = useNavigate()
-    
-    interface PropsOrderForm {
-        CEP: string,
-        Rua: string,
-        numero: string, // Pode ser z.number() se você quiser um número.
-        complemento: string,
-        bairro: string,
-        cidade: string,
-        UF: string,
-    }
 
-    const newOrderFormSchema = zod.object({
-        CEP: zod.string(),//.min(2, 'Formato de CEP inválido. Use o formato 12345-678.'),
-        Rua: zod.string(),
-        numero: zod.string(),  // Pode ser zod.number() se você quiser um número.
-        complemento: zod.string(),
-        bairro: zod.string(),
-        cidade: zod.string(),
-        UF: zod.string()//.min(2, 'O campo UF deve ter exatamente 2 caracteres.'),
-      });
-      
+    const [methodPayment, setmethodPayment] = useState<string | null>(null)
+
     const {register, handleSubmit, /*watch, /*formState: {errors}*/} = useForm<PropsOrderForm>({
         resolver: zodResolver(newOrderFormSchema),
         defaultValues: {
-            bairro: '',
+            Bairro: '',
             CEP: '',
-            cidade: '',
-            complemento: '',
-            numero: '',
+            Cidade: '',
+            Complemento: '',
+            Numero: '',
             Rua: '',
-            UF: ''
+            UF: '',
+
         }
     })
 
 
-    const {items} = useCart()
+    const {items, dispatch} = useCart()
 
-
-    
-    function handleSucess(data: any) {
-        //navigate("/order")
    
-        console.log(data)
+    
+    function handleSucess(data: PropsOrderForm) {
+        //navigate("/order")
 
-        
+ 
+        dispatch({
+            type: ActionTypes.CART_CHECKOUT,
+            payloads: {
+                items: {id: '', description: '', price: 0, quantity: 0, tag: [], title: '', urlimg: ''},
+                CartSelectedWithForm: {...data, MethodPayment: methodPayment, CartSelect: items }
+            }
+           
+            
+        })
+        //console.log(data)
+
     }
-
-
-
-
 
 
 
@@ -103,12 +105,12 @@ export function Payment() {
                             <input {...register('Rua')} type="text" id="rua" placeholder="Rua" />
 
                             <div>
-                                <input {...register('numero')} type="text" id="numero" placeholder="Número" />
-                                <input {...register('complemento')} type="text" id="complemento" placeholder="Complemento" />
+                                <input {...register('Numero')} type="text" id="numero" placeholder="Número" />
+                                <input {...register('Complemento')} type="text" id="complemento" placeholder="Complemento" />
                             </div>
                             <div>
-                                <input {...register('bairro')} type="text" id="bairro" placeholder="Bairro" />
-                                <input {...register('cidade')} type="text" id="cidade" placeholder="Cidade" />
+                                <input {...register('Bairro')} type="text" id="bairro" placeholder="Bairro" />
+                                <input {...register('Cidade')} type="text" id="cidade" placeholder="Cidade" />
                                 <input {...register('UF')} type="text" id="uf" placeholder="UF" />
                             </div>
 
@@ -127,9 +129,9 @@ export function Payment() {
 
 
                         <div className="payment">
-                            <button type="button"><CreditCard size={16} /> Cartão de Crédito</button>
-                            <button type="button"><Bank size={16} />Cartão de Débito</button>
-                            <button type="button"><Money size={16} />Dinheiro</button>
+                            <button className={methodPayment === 'credit'? 'active': ''} onClick={e => setmethodPayment(e.currentTarget.name)} name="credit" type="button"><CreditCard size={16} /> Cartão de Crédito</button>
+                            <button className={methodPayment === 'debit' ? 'active': ''} onClick={e => setmethodPayment(e.currentTarget.name)} name="debit" type="button"><Bank size={16} />Cartão de Débito</button>
+                            <button className={methodPayment === 'money' ? 'active': ''} onClick={e => setmethodPayment(e.currentTarget.name)} name="money" type="button"><Money size={16} />Dinheiro</button>
                         </div>
 
                     </div>

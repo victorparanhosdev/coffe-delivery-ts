@@ -1,12 +1,12 @@
 
 import { Minus, Plus, Trash } from '@phosphor-icons/react'
 import { CardSelect } from './style'
-import { PropsDataInfo2, ActionTypes } from '../../reducers/actions'
+import { ActionTypes } from '../../reducers/actions'
 import { useState } from 'react'
-import { useCart } from '../../hooks/context'
+import { useCart, CartSelectWithQuantity } from '../../hooks/context'
 
 interface PropsCoffeSelected {
-  coffeSelecteds: PropsDataInfo2,
+  coffeSelecteds: CartSelectWithQuantity,
 }
 
 export function CardSelected({ coffeSelecteds }: PropsCoffeSelected) {

@@ -158,7 +158,7 @@ export const Section = styled.section`
             background: ${({ theme }) => theme["base-hover"]};
             color: ${({ theme }) => theme["base-subtitle"]};;
         }
-        &:active {
+        &.active {
             border: 1px solid ${({ theme }) => theme.purple};
             background: ${({ theme }) => theme["purple-light"]};
         }
