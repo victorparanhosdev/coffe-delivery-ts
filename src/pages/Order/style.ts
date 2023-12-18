@@ -11,9 +11,10 @@ export const Content = styled.main`
     display: flex;
     justify-content: space-between;
     align-items: end;
-@media (max-width: 450px){
+    @media (max-width: 450px){
     display: grid;
-}
+    gap: 2rem;
+    }
     .section-one {
 
         h1 {
@@ -59,7 +60,9 @@ export const Details = styled.div`
         background: linear-gradient(${theme.background}, ${theme.background}) padding-box, linear-gradient(to bottom right, ${theme.yellow}, ${theme.purple});
         `
     }}
-    
+    @media (max-width: 450px){
+    padding: 4rem 2rem;
+    }
    
     > div {
         display: flex;
