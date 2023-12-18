@@ -11,6 +11,9 @@ export const Content = styled.main`
     display: flex;
     justify-content: space-between;
     align-items: end;
+@media (max-width: 450px){
+    display: grid;
+}
     .section-one {
 
         h1 {
