@@ -14,7 +14,7 @@ export function Header(){
                 <NavLink to='/'><img src='/assets/Logo.svg' alt="Logo Coffe" /></NavLink>
 
                 <Menu>
-                    <div><MapPin size={22} weight="fill" /><span>Porto Alegre, RS</span></div>
+                    <div><MapPin size={22} weight="fill" /><span>Cruz das Almas, BA</span></div>
                     <NavLink to="/payment"><ShoppingCart size={22} weight="fill"/><span>{items && items.length ? items.length : 0}</span></NavLink>
                 </Menu>
                 

@@ -1,8 +1,30 @@
 import { OrderContainer, Content, Details } from "./style";
 import { Header } from "../../components/Header";
-
+import { useCart } from "../../hooks/context";
 import {Timer, MapPinLine, CurrencyDollar} from '@phosphor-icons/react'
+
+
 export function Order(){
+
+    const {CartSelectedWithForm} = useCart()
+
+    const MethodPagament = CartSelectedWithForm?.methodPayment
+    let paymentMethodString = "";
+    
+    switch (MethodPagament) {
+        case 'credit':
+          paymentMethodString = "Cartão de Crédito";
+          break;
+        case 'debit':
+          paymentMethodString = "Cartão de Débito";
+          break;
+        case 'money':
+          paymentMethodString = "Pagamento em dinheiro";
+          break;
+        default:
+          paymentMethodString = "Método de pagamento desconhecido";
+      }
+
     return(
         <OrderContainer>
             <Header />
@@ -18,7 +40,7 @@ export function Order(){
                             <span>
                                 <MapPinLine weight="fill" size={16}/>
                             </span>
-                            <p>Entrega em <strong>Rua João Daniel Martinelli, 102</strong><br />Farrapos - Porto Alegre, RS</p>
+                            <p>Entrega em <strong>{CartSelectedWithForm?.Rua}, {CartSelectedWithForm?.Numero}</strong><br />{CartSelectedWithForm?.Bairro} - {CartSelectedWithForm?.Cidade}, {CartSelectedWithForm?.UF}</p>
                         </div>
 
                         <div>
@@ -32,7 +54,7 @@ export function Order(){
                             <span>
                                 <CurrencyDollar size={16}/>
                             </span>
-                        <p>Pagamento na entrega<br /><strong>Cartão de Crédito</strong></p>
+                        <p>Pagamento na entrega<br /><strong>{paymentMethodString}</strong></p>
                         </div>
                         
                     </Details>

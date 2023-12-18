@@ -23,6 +23,11 @@ export const Form = styled.form`
 `
 
 export const Section = styled.section`
+    span {
+        font-size: 1.2rem;
+        color: ${({ theme }) => theme["yellow-dark"]};
+ 
+    }
 
 > div {
     padding: 4rem;
@@ -58,7 +63,15 @@ export const Section = styled.section`
 }
 
 .inputForm {
-    
+display: grid;
+grid-template-areas:
+    'cep . .'
+    'rua rua rua'
+    'numero complemento complemento'
+    'bairro cidade uf';
+grid-template-columns: 20rem 1fr 6rem;
+gap: 1.6rem 1.2rem;
+  
     input {
         font-size: 1.4rem;
         height: 4.2rem;
@@ -78,35 +91,50 @@ export const Section = styled.section`
         }
 
     }
-    input[id="cep"]{
-        width: 20rem;
-        margin-bottom: 1.6rem;
+ 
+    div:has(input[id="cep"]){
+        grid-area: cep;
     }
-    input[id="rua"]{
-        width: 100%;
-        margin-bottom: 1.6rem;
+    div:has(input[id="rua"]){
+        grid-area: rua;
+    }
+    div:has(input[id="numero"]){
+        grid-area: numero;
+    }
+    div:has(input[id="complemento"]){
+        grid-area: complemento;
+        position: relative;
+
+        input {
+            padding-right: 6rem;
+        }
+        i {
+            position: absolute;
+            right: 1rem;
+            font-size: 1.2rem;
+            color: ${({theme})=> theme["base-label"]};
+            line-height: 1.3;
+            top: 50rem;
+            transform: translateY(-48.7rem);
+        }
+        
+    
+    }
+    div:has(input[id="bairro"]){
+        grid-area: bairro;
+    }
+    div:has(input[id="cidade"]){
+        grid-area: cidade;
+    }
+    div:has(input[id="uf"]){
+        grid-area: uf;
     }
 
-    > div {
-        display: flex;
-        gap: 1.2rem;
-        input[id="numero"]{
-        width: 20rem;
-        }
-        input[id="uf"]{
-        flex: 1;
-        }
-        input[id="cidade"]{
-        flex: 5;
-        }
-        input[id="bairro"]{
-        width: 20rem;
-        }
-    }
 
-    > div + div {
-        margin-top: 1.6rem;
-    }
+
+
+
+
 }
 
 .section-two {
@@ -138,7 +166,7 @@ export const Section = styled.section`
     display: flex;
     gap: 1.2rem;
 
-    button {
+    label {
         width: 100%;
         border: 1px solid transparent;
         background: ${({ theme }) => theme["base-button"]};
@@ -147,13 +175,18 @@ export const Section = styled.section`
         display: flex;
         gap: 1.2rem;
         align-items: center;
-
         padding: 1.6rem;
         text-transform: uppercase;
         font-size: 1.2rem;
         line-height: 1.6;
         white-space: nowrap;
         transition: background 0.2s, color 0.2s;
+        cursor: pointer;
+
+        input {
+            display: none;
+        }
+
         &:hover{
             background: ${({ theme }) => theme["base-hover"]};
             color: ${({ theme }) => theme["base-subtitle"]};;
