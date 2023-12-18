@@ -12,7 +12,7 @@ export const GLobalStyle = createGlobalStyle`
 }
 
 body {
-    background: ${({theme})=> theme.background};
+    background: ${({ theme }) => theme.background};
     font-family: 'Roboto', sans-serif;
     //font-family: 'Baloo 2', sans-serif;
 }
@@ -35,8 +35,11 @@ h1 {
     font-family: 'Baloo 2', sans-serif;
 }
 
-
-
+@media (max-width: 450px){
+               &::placeholder{
+                font-size: 1.2rem;
+               }
+}
 
 
 `

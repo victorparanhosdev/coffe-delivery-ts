@@ -1,4 +1,4 @@
-import { PaymentContainer, Form, Aside, Section, PriceContent } from "./style";
+import {Form, Aside, Section, PriceContent } from "./style";
 import { Header } from "../../components/Header";
 import { MapPinLine, CurrencyDollar, Bank, Money, CreditCard} from '@phosphor-icons/react'
 import { useNavigate } from "react-router-dom";
@@ -100,7 +100,7 @@ export function Payment() {
 
 
     return (
-        <PaymentContainer>
+        <>
             <Header />
             <Form onSubmit={handleSubmit(handleSucess)}>
                 <Section >
@@ -187,6 +187,6 @@ export function Payment() {
                 </Aside>
             </Form>
 
-        </PaymentContainer>
+        </>
     )
 }

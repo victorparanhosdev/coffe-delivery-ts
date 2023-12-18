@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export const PaymentContainer = styled.div`
 
-
-`
 export const Form = styled.form`
     width: min(112rem, 95%);
     margin: 4rem auto;   
@@ -17,6 +14,10 @@ export const Form = styled.form`
     margin-bottom: 1.5rem;
     line-height: 1.3;
 
+}
+
+@media (max-width: 450px) {
+    grid-template-columns: auto;
 }
 
 
@@ -33,6 +34,10 @@ export const Section = styled.section`
     padding: 4rem;
     background: ${({ theme }) => theme["base-card"]};
     border-radius: 0.6rem;
+    @media (max-width: 450px) {
+    padding: 4rem 1rem;
+    }
+
 }
 > div + div {
     margin-top: 1.2rem;
@@ -58,6 +63,10 @@ export const Section = styled.section`
             color: ${({ theme }) => theme["base-text"]};
             font-size: 1.4rem;
             font-weight: 400;
+            @media (max-width: 450px){
+                font-size: 1.2rem;
+                margin-top: 0.5rem;
+            }
         }
     }
 }
@@ -71,6 +80,19 @@ grid-template-areas:
     'bairro cidade uf';
 grid-template-columns: 20rem 1fr 6rem;
 gap: 1.6rem 1.2rem;
+
+@media (max-width: 450px) {
+        grid-template-areas: 
+        'cep cep cep'
+        'rua rua rua'
+        'numero complemento complemento'
+        'bairro bairro bairro'
+        'cidade cidade uf';
+
+        grid-template-columns: 2fr 1fr 10rem;
+
+
+    }
   
     input {
         font-size: 1.4rem;
@@ -112,7 +134,7 @@ gap: 1.6rem 1.2rem;
             position: absolute;
             right: 1rem;
             font-size: 1.2rem;
-            color: ${({theme})=> theme["base-label"]};
+            color: ${({ theme }) => theme["base-label"]};
             line-height: 1.3;
             top: 50rem;
             transform: translateY(-48.7rem);
@@ -158,6 +180,11 @@ gap: 1.6rem 1.2rem;
         color: ${({ theme }) => theme["base-text"]};
         font-size: 1.4rem;
         font-weight: 400;
+        @media (max-width: 450px){
+                font-size: 1.2rem;
+                margin-top: 0.5rem;
+            }
+
     }
 }
 }
@@ -182,6 +209,8 @@ gap: 1.6rem 1.2rem;
         white-space: nowrap;
         transition: background 0.2s, color 0.2s;
         cursor: pointer;
+     
+
 
         input {
             display: none;
@@ -196,9 +225,18 @@ gap: 1.6rem 1.2rem;
             background: ${({ theme }) => theme["purple-light"]};
         }
         svg {
-            color: ${({ theme }) => theme.purple};;
+            color: ${({ theme }) => theme.purple};
+            min-width: 1.6rem;
         }
     }
+    @media (max-width: 450px) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+        label {
+            font-size: 1rem;
+        }
+    }
+
 }
 `
 
@@ -208,6 +246,9 @@ export const Aside = styled.aside`
     padding: 4rem;
     background: ${({ theme }) => theme["base-card"]};
     border-radius: 0.6rem 4.4rem 0.6rem 4.4rem;
+    @media (max-width: 450px){
+        padding: 4rem 2rem;
+    }
 }
 `
 
