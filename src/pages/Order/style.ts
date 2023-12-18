@@ -61,7 +61,7 @@ export const Details = styled.div`
         `
     }}
     @media (max-width: 450px){
-    padding: 4rem 2rem;
+    padding: 4rem 1rem;
     }
    
     > div {
