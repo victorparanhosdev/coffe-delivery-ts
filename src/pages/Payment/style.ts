@@ -16,8 +16,9 @@ export const Form = styled.form`
 
 }
 
-@media (max-width: 450px) {
-    grid-template-columns: auto;
+@media (max-width: 1085px) {
+    grid-template-columns: 100%;
+    justify-content: center;
 }
 
 
@@ -34,8 +35,8 @@ export const Section = styled.section`
     padding: 4rem;
     background: ${({ theme }) => theme["base-card"]};
     border-radius: 0.6rem;
-    @media (max-width: 450px) {
-    padding: 4rem 1rem;
+    @media (max-width: 580px) {
+    padding: 4rem 2rem;
     }
 
 }
@@ -61,12 +62,9 @@ export const Section = styled.section`
         }
         p {
             color: ${({ theme }) => theme["base-text"]};
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 2.5vw + 0rem, 1.4rem);
             font-weight: 400;
-            @media (max-width: 450px){
-                font-size: 1.2rem;
-                margin-top: 0.5rem;
-            }
+           
         }
     }
 }
@@ -137,7 +135,7 @@ gap: 1.6rem 1.2rem;
             color: ${({ theme }) => theme["base-label"]};
             line-height: 1.3;
             top: 50rem;
-            transform: translateY(-48.7rem);
+            transform: translateY(-48.6rem);
         }
         
     
@@ -178,12 +176,9 @@ gap: 1.6rem 1.2rem;
     }
     p {
         color: ${({ theme }) => theme["base-text"]};
-        font-size: 1.4rem;
+        font-size: clamp(1.2rem, 2.5vw + 0rem, 1.4rem);
         font-weight: 400;
-        @media (max-width: 450px){
-                font-size: 1.2rem;
-                margin-top: 0.5rem;
-            }
+       
 
     }
 }
@@ -192,6 +187,7 @@ gap: 1.6rem 1.2rem;
 .payment {
     display: flex;
     gap: 1.2rem;
+
 
     label {
         width: 100%;
@@ -229,15 +225,16 @@ gap: 1.6rem 1.2rem;
             min-width: 1.6rem;
         }
     }
-    @media (max-width: 450px) {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-        label {
-            font-size: 1rem;
-        }
+   
+    @media (max-width: 645px){
+             display: grid;
+             grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
     }
 
+
 }
+
+
 `
 
 
@@ -246,9 +243,7 @@ export const Aside = styled.aside`
     padding: 4rem;
     background: ${({ theme }) => theme["base-card"]};
     border-radius: 0.6rem 4.4rem 0.6rem 4.4rem;
-    @media (max-width: 450px){
-        padding: 4rem 2rem;
-    }
+
 }
 `
 

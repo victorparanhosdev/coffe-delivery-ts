@@ -23,7 +23,7 @@ export interface PropsOrderFormAll {
 }
 
 const newOrderFormSchema = zod.object({
-    CEP: zod.string().min(6, 'Informe o CEP').refine(value => /^\d{8}$/.test(value), 'Informe números válidos sem hífen'),
+    CEP: zod.string().min(1, 'Informe o CEP').refine(value => /^\d{8}$/.test(value), 'Informe números válidos sem hífen'),
     Rua: zod.string().min(3, 'Informe a Rua'),
     Numero: zod.string().min(1, 'Informe o Número'),
     Complemento: zod.string(),
@@ -38,7 +38,6 @@ const newOrderFormSchema = zod.object({
 
 export function Payment() {
     const navigate = useNavigate()
-
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm<PropsOrderFormAll>({
         resolver: zodResolver(newOrderFormSchema),

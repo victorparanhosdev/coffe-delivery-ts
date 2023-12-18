@@ -35,11 +35,6 @@ h1 {
     font-family: 'Baloo 2', sans-serif;
 }
 
-@media (max-width: 450px){
-               &::placeholder{
-                font-size: 1.2rem;
-               }
-}
 
 
 `

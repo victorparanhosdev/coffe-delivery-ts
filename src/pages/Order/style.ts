@@ -1,9 +1,5 @@
 import styled, {css} from "styled-components";
 
-export const OrderContainer = styled.div`
-
-
-`
 
 export const Content = styled.main`
     width: min(112rem, 95%);
@@ -11,8 +7,9 @@ export const Content = styled.main`
     display: flex;
     justify-content: space-between;
     align-items: end;
-    @media (max-width: 450px){
+    @media (max-width: 1000px){
     display: grid;
+    justify-content: center;
     gap: 2rem;
     }
     .section-one {
@@ -27,7 +24,7 @@ export const Content = styled.main`
         p {
             color: ${({theme})=> theme["base-subtitle"]};
             margin-top: 0.4rem;
-            font-size: 2rem;
+            font-size: clamp(1.6rem, 1vw + 1rem, 2rem);
             line-height: 1.3;
         }
 
@@ -40,6 +37,10 @@ export const Content = styled.main`
         height: 29.3rem;
         display: block;
         object-fit: cover;
+        @media (max-width: 525px){
+            width: 100%;
+            height: auto;
+        }
     }
 
 
@@ -60,9 +61,11 @@ export const Details = styled.div`
         background: linear-gradient(${theme.background}, ${theme.background}) padding-box, linear-gradient(to bottom right, ${theme.yellow}, ${theme.purple});
         `
     }}
-    @media (max-width: 450px){
-    padding: 4rem 1rem;
-    }
+
+@media (max-width: 500px){
+          padding: 4rem 2rem
+        }
+   
    
     > div {
         display: flex;
@@ -80,7 +83,7 @@ export const Details = styled.div`
         }
         p {
             color: ${({theme})=> theme["base-text"]};
-            font-size: 1.6rem;
+            font-size: clamp(1.4rem, 1vw + 1rem, 1.6rem);
             line-height: 1.3;
            
         }

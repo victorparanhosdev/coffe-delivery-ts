@@ -1,4 +1,4 @@
-import { OrderContainer, Content, Details } from "./style";
+import {Content, Details } from "./style";
 import { Header } from "../../components/Header";
 import { useCart } from "../../hooks/context";
 import {Timer, MapPinLine, CurrencyDollar} from '@phosphor-icons/react'
@@ -26,7 +26,7 @@ export function Order(){
       }
 
     return(
-        <OrderContainer>
+        <>
             <Header />
             <Content>
                 <section>
@@ -65,6 +65,6 @@ export function Order(){
             </Content>
         
         
-        </OrderContainer>
+        </>
     )
 }

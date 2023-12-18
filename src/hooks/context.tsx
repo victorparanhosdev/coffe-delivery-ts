@@ -2,7 +2,7 @@ import React, { ReactNode, createContext, useContext, useEffect, useReducer } fr
 import { coffees} from '../../data.json'
 import {PropsOrderFormAll} from '../pages/Payment'
 import { ActionTypes } from "../reducers/actions";
-
+import { produce } from "immer";
 interface PropsContextCart {
   children: ReactNode
 }
@@ -56,104 +56,62 @@ const CartContext = createContext({} as PropsDataContext)
 function CartProvider({ children }: PropsContextCart) {
 
   const [CartDispatch, dispatch] = useReducer((state: StateReducerProps, action: PropsActionReducer) => {
- 
+    const verifyItem = state.payloads.items.findIndex(dataDispatch => dataDispatch.id === action.payloads.items.id);
+
     switch (action.type) {
       case ActionTypes.ADD_ITEM: {
-        const verifyAdd = state.payloads.items.findIndex(dataDispatch => dataDispatch.id === action.payloads.items.id);
-  
-        if (verifyAdd > -1) {
-          // Se o item já existe no carrinho, atualize a quantidade
-          const newArray = [...state.payloads.items];
-          newArray[verifyAdd].quantity += action.payloads.items.quantity;
-  
-          return {
-            ...state,
-            payloads: {
-              items: newArray,
-            },
-          };
-        } else {
-          // Se o item não existe no carrinho, adicione-o
-          return {
-            ...state,
-            payloads: {
-              items: [...state.payloads.items, action.payloads.items],
-            },
-          };
+
+      return produce(state, (draft) => {
+        if (verifyItem > -1) {
+          draft.payloads.items[verifyItem].quantity += action.payloads.items.quantity
+        }else {
+          draft.payloads.items.push(action.payloads.items)
         }
+      })
       }
-     
   
       case ActionTypes.ADD_INCREMENT: {
-        const verifyInc = state.payloads.items.findIndex(dataDispatch => dataDispatch.id === action.payloads.items.id);
-  
-        if (verifyInc > -1) {
-          // Se o item já existe no carrinho, atualize a quantidade
-          const newArray = [...state.payloads.items];
-          newArray[verifyInc].quantity = action.payloads.items.quantity;
-  
-          return {
-            ...state,
-            payloads: {
-              items: newArray,
-            },
-          };
-        }
+     
+        return produce(state, (draft)=> {
+          if (verifyItem > -1) {
+            draft.payloads.items[verifyItem].quantity = action.payloads.items.quantity
+          }
+          })
       }
-      break;
-  
       case ActionTypes.ADD_DECREMENT: {
-        const verifyDec = state.payloads.items.findIndex(dataDispatch => dataDispatch.id === action.payloads.items.id);
-  
-        if (verifyDec > -1) {
-          // Se o item já existe no carrinho, atualize a quantidade
-          const newArray = [...state.payloads.items];
-          newArray[verifyDec].quantity = action.payloads.items.quantity;
-  
-          return {
-            ...state,
-            payloads: {
-              items: newArray,
-            },
-          };
-        }
+        
+        return produce(state, (draft)=> {
+          if (verifyItem > -1) {
+            draft.payloads.items[verifyItem].quantity = action.payloads.items.quantity
+          }
+          })
       }
-      break;
-  
+
       case ActionTypes.REMOVE_ITEM: {
-        const newArray = state.payloads.items.filter(dataDispatch => dataDispatch.id !== action.payloads.items.id);
-        return {
-          ...state,
-          payloads: {
-            items: newArray,
-          },
-        };
+        return produce(state, (draft)=> {
+          draft.payloads.items = state.payloads.items.filter(dataDispatch => dataDispatch.id !== action.payloads.items.id);
+        })
+
       }
 
       case ActionTypes.CART_CHECKOUT: {
-       
-        return {
-          ...state,
-          payloads: {
-            items: [],
-            CartSelectedWithForm: action.payloads.CartSelectedWithForm  
-          },
-        };
+        return produce(state, (draft)=> {
+          draft.payloads.items = []
+          draft.payloads.CartSelectedWithForm = action.payloads.CartSelectedWithForm
+        })
       }
-  
       default:
-          return state
-   
+        return state
     }
-  
-    return state
+
+ 
   }, {
     type: '',
     payloads: {
-      items: []
+      items: [],
     }
   }, (prevState)=> {
-    const StorageData = localStorage.getItem("@coffeeCart:")
+    const StorageData = localStorage.getItem("@coffee-delivery:cart-state-1.0.0")
     if(StorageData) {
       const FilterStorage = JSON.parse(StorageData)
 
@@ -166,11 +124,10 @@ function CartProvider({ children }: PropsContextCart) {
   });
 
   const { payloads: { items, CartSelectedWithForm } } = CartDispatch
-
-
+  console.log(CartDispatch)
   useEffect(()=> {
 
-    localStorage.setItem("@coffeeCart:", JSON.stringify(CartDispatch))
+    localStorage.setItem("@coffee-delivery:cart-state-1.0.0", JSON.stringify(CartDispatch))
 
 
   }, [items])
