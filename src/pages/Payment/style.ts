@@ -243,6 +243,9 @@ export const Aside = styled.aside`
     padding: 4rem;
     background: ${({ theme }) => theme["base-card"]};
     border-radius: 0.6rem 4.4rem 0.6rem 4.4rem;
+    @media (max-width: 580px) {
+    padding: 4rem 1rem;
+    }
 
 }
 `
