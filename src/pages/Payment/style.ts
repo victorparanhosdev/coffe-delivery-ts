@@ -83,13 +83,13 @@ gap: 1.6rem 1.2rem;
 
 @media (max-width: 450px) {
         grid-template-areas: 
-        'cep cep cep'
+        'cep . .'
         'rua rua rua'
         'numero complemento complemento'
         'bairro bairro bairro'
         'cidade cidade uf';
 
-        grid-template-columns: 2fr 1fr 10rem;
+        grid-template-columns: 2fr 2fr 1fr;
 
 
     }
